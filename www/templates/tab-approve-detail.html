@@ -1,0 +1,62 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="订单详情" class="order-approve">
+  <ion-content padding="false">
+    <div class="panel basic">
+        <span style="float:right;color:red">{{approveDetailCtrl.order.OrderStateDesc}}</span>
+        <span>订单号：{{approveDetailCtrl.orderDetail.Osn}}</span><br/>
+        <span style="margin-top:5px;display:inline-block">下单时间：{{approveDetailCtrl.orderDetail.AddTime | date:'yyyy-MM-dd hh:mm:ss'}}</span><br/>
+       
+    </div>
+    <div class="split">
+    </div>  
+    <div class="panel info">
+      <span>店铺名称：{{approveDetailCtrl.orderDetail.StoreName}}</span>
+      <span>买家账号：{{approveDetailCtrl.orderDetail.BuyerUserName}}</span>
+      <span>商品名称：{{approveDetailCtrl.orderDetail.StoreName}}</span>
+      <span>商品数量：{{approveDetailCtrl.orderDetail.ProductCount}}</span>
+      <span>支付方式：{{approveDetailCtrl.orderDetail.PayMode}}</span>
+      <span>现金支付：{{approveDetailCtrl.orderDetail.CashMoney.toFixed(2)}}</span>
+      <span>红包支付：{{approveDetailCtrl.orderDetail.CreditMoney.toFixed(2)}}</span>
+      <span>平台服务费：{{approveDetailCtrl.orderDetail.CommissionMoney.toFixed(2)}}</span>
+      <span>现金支付服务费：{{approveDetailCtrl.orderDetail.CashCommissionMoney.toFixed(2)}}</span>
+      <span>红包支付服务费：{{approveDetailCtrl.orderDetail.RedCommissionMoney.toFixed(2)}}</span>
+    </div>
+    <div class="split">
+    </div>  
+    <div class="panel">
+      <form name="orderForm" novalidate="novalidate" ng-submit="approveDetailCtrl.approveOrder()">
+        <ul class="wrap">
+          <li class="row row-t">
+            <span class="txt-t">审核结果：</span>
+            <div class="txt-sel">
+              <select class="sel" name="resultCode" ng-model="approveDetailCtrl.resultCode" required>
+                <option value="">请选择</option>
+                <option value="1">通过</option>
+                <option value="2">驳回</option>
+              </select>
+            </div>
+          </li>
+          <li class="row">
+            <span class="txt-t">备注：</span>
+            <div class="txt-input">
+              <input type="text" class="txt" ng-model="approveDetailCtrl.comment" 
+                  ng-required="approveDetailCtrl.resultCode==2" placeholder="审核驳回时必须输入备注"  name="comment" />
+            </div>
+          </li>
+          <li class="row row-error" ng-show="orderForm.comment.$invalid && !orderForm.comment.$pristine" >
+            <span ng-show="orderForm.comment.$error.required">审核驳回时必须输入备注</span>
+          </li>
+        </ul>
+        <button class="button button-block button-positive" style="width:150px;margin:auto" type="submit" ng-disabled="orderForm.$invalid">
+          保存
+        </button>
+      </form>
+    </div>
+    
+  </ion-content>
+</ion-view>

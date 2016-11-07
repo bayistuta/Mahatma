@@ -1,0 +1,22 @@
+<ion-view class="login"  view-title="" hide-nav-bar="true">
+	<ion-content padding="true">
+		<div style="padding-right:20px;padding-left:20px;">
+			<img src="img/logo_login.png" class="logo" />
+			<label class="item item-input">
+				<i class="icon ico-username placeholder-icon"></i>
+				<input type="text" placeholder="请输入您的手机号" ng-model="loginCtrl.username" id="username">
+			</label>
+			<label class="item item-input" style="margin-top:20px;">
+				<i class="icon ico-password placeholder-icon"></i>
+				<input type="password" placeholder="请输入密码" ng-model="loginCtrl.password" id="password">
+			</label>
+			<ion-panel class="remember">
+				<label class="">
+					<input type="checkbox" class="checkbox" ng-model="loginCtrl.isSaveLogin" />记住登录密码
+				</label>
+			</ion-panel>
+			<button class="button button-block button-positive" ng-click="loginCtrl.signIn()">
+			登&nbsp;&nbsp;&nbsp;&nbsp;录
+			</button>
+	</ion-content>
+</ion-view>

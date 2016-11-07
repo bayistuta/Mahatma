@@ -1,0 +1,43 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-striped tabs-light" ng-class="{'tabs-item-hide': tabCtrl.isShowTabs()}">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="首页" icon-off="icon-home" icon-on="icon-home" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+	
+  <!-- Confirm orders Tab -->
+  <ion-tab title="确认订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/approves" >
+    <ion-nav-view name="tab-approves"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Orders Tab -->
+  <ion-tab title="线下订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/orders" class="{{tabCtrl.isShow([2,5,6,8,9,10])}}">
+    <ion-nav-view name="tab-orders"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Approves Tab -->
+  <ion-tab title="审核订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/approves" class="{{tabCtrl.isShow([7,12,13])}}">
+    <ion-nav-view name="tab-approves"></ion-nav-view>
+  </ion-tab>
+
+	 <!-- My Member Tab -->
+  <ion-tab title="我的会员" icon-off="icon-order" icon-on="icon-order" href="#/tab/approves" class="{{tabCtrl.isShow([2,4,9,10])}}">
+    <ion-nav-view name="tab-approves"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="我的账户" icon-off="icon-account" icon-on="icon-account" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+   <!-- social Tab 
+  <ion-tab title="社区" icon-off="icon-social" icon-on="icon-social" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+  -->
+</ion-tabs>

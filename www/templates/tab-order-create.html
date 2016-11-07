@@ -1,0 +1,110 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="我要报单" class="order-create">
+  <ion-content padding="false">
+    <form name="orderForm" novalidate="novalidate" ng-submit="orderCreateCtrl.createOrder()">
+      <ul class="wrap">
+        <li class="row">
+          <span class="txt-t">我的店铺：</span>
+          <div class="txt-label">
+            <span>{{orderCreateCtrl.storeName}}</span>
+          </div>
+        </li>
+        <li class="row row-t">
+          <span class="txt-t">买家账号：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="请输入买家账号" ng-blur="orderCreateCtrl.verifyBuyer()" ng-model="orderCreateCtrl.buyerName"
+              required name="buyerName"  /></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.buyerName.$invalid && !orderForm.buyerName.$pristine">
+          <span ng-show="orderForm.buyerName.$error.required">买家账号不能为空</span>
+        </li>
+        <li class="row" ng-if="orderCreateCtrl.buyerCredit > 0">
+          <span class="txt-t">买家红包：</span>
+          <div class="txt-input txt-label">
+            <span>{{orderCreateCtrl.buyerCredit}}</span>
+          </div>
+        </li>
+        <li class="row row-t">
+          <span class="txt-t">商品名称：</span>
+          <div class="txt-input"><input type="text" class="txt" placeholder="请输入商品名称" required  name="prodcutName" ng-model="orderCreateCtrl.productName" /></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.prodcutName.$invalid && !orderForm.prodcutName.$pristine">
+          <span ng-show="orderForm.prodcutName.$error.required">商品名称不能为空</span>
+        </li>
+        <li class="row row-t">
+          <span class="txt-t">商品分类：</span>
+          <div class="txt-sel"><select class="sel" ng-model="orderCreateCtrl.selectedCategoryId" name="category">
+            <option value="">请选择</option>
+            <option ng-repeat="category in orderCreateCtrl.categories" value="{{category.CateId}}">{{category.CategroyName}}</option>
+            </select></div>
+        </li>
+        <li class="row">
+          <span class="txt-t">商品数量：</span>
+          <div class="txt-input"><input type="text" class="txt" required ng-model="orderCreateCtrl.buyNumber" name="buyNumber" /></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.buyNumber.$invalid && !orderForm.buyNumber.$pristine">
+          <span ng-show="orderForm.buyNumber.$error.required">商品数量不能为空</span>
+        </li>
+        <li class="row row-t">
+          <span class="txt-t">支付方式：</span>
+          <div class="txt-sel">
+            <select class="sel" ng-model="orderCreateCtrl.payMode" ng-change="orderCreateCtrl.changePayModel()">
+              <option value="0">现金支付</option>
+              <option value="1">红包支付</option>
+              <option value="2">混合支付</option>
+            </select>
+          </div>
+        </li>
+        <li class="row" ng-if="orderCreateCtrl.payMode!='1'">
+          <span class="txt-t">现金支付：</span>
+          <div class="txt-input"><input type="number" class="txt" required name="cashMoney" ng-model="orderCreateCtrl.cashMoney" ng-change="orderCreateCtrl.calcCommissionMoney()" /></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.cashMoney.$invalid && !orderForm.cashMoney.$pristine">
+          <span ng-show="orderForm.cashMoney.$error.required">请输入现今支付金额</span>
+        </li>
+        <li class="row" ng-if="orderCreateCtrl.payMode!='0'">
+          <span class="txt-t">红包支付:</span>
+          <div class="txt-input"><input type="number" class="txt" required name="redMoney" ng-model="orderCreateCtrl.redMoney"/></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.redMoney.$invalid && !orderForm.redMoney.$pristine" >
+          <span ng-show="orderForm.redMoney.$error.required">请输入红包支付金额</span>
+        </li>
+        <li class="row">
+          <span class="txt-t">商家红包：</span>
+          <div class="txt-label">
+            {{orderCreateCtrl.sellerCredit}}
+          </div>
+        </li>
+        <li class="row">
+          <span class="txt-t">平台服务费：</span>
+          <div class="txt-label">
+            {{orderCreateCtrl.commissionMoney}}
+          </div>
+        </li>
+        <li class="row">
+          <span class="txt-t">现金支付服务费：</span>
+          <div class="txt-input"><input type="number" class="txt"  name="cashCommissionMoney" ng-model="orderCreateCtrl.cashCommissionMoney" style="width:205px;" /></div>
+        </li>
+        <li class="row">
+          <span class="txt-t" >红包支付服务费：</span>
+          <div class="txt-input"><input type="number" class="txt"  name="redCommissionMoney" ng-model="orderCreateCtrl.redCommissionMoney" style="width:205px;" /></div>
+        </li>
+        <li class="row" style="margin-top:30px;">
+          <span class="txt-t">支付密码：</span>
+          <div class="txt-input"><input type="password" class="txt" required name="payPassword" ng-model="orderCreateCtrl.payPassword" style="width:250px;"  /></div>
+        </li>
+        <li class="row row-error" ng-show="orderForm.payPassword.$invalid && !orderForm.payPassword.$pristine"  >
+          <span ng-show="orderForm.payPassword.$error.required">请输入支付密码</span>
+        </li>
+      </ul>
+      <button class="button button-block button-positive" type="submit" ng-disabled="orderForm.$invalid" style="width:50%;margin:auto;margin-top:20px;">
+        确认
+      </button>
+    </form>
+  </ion-content>
+</ion-view>
