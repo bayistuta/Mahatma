@@ -23,7 +23,7 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
 
     $rootScope.$on('$stateChangeStart', function (event, toState, params) {
         if (toState.data.requireLogin && !sessionStorage.getItem(Constants.CACHE_TOKEN_KEY)) {
-          $location.path('/dash');
+          $location.path('/login');
         } 
     });
     $rootScope.showLoadingBar = true;
@@ -43,22 +43,6 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
     })
 
   })
-
-  .factory('authInterceptor', function ($rootScope, $q, Constants) {
-    return {
-      // Add authorization token to headers
-      request: function (config) {
-        var authString;
-        config.headers = config.headers || {};
-        var token = sessionStorage.getItem(Constants.CACHE_TOKEN_KEY);
-        if (token) {
-          config.headers['Authorization'] = 'bearer ' + token;
-        }
-        return config;
-      }
-    };
-  })
-
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -106,25 +90,6 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
           }
         }
       })
-
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl as accountCtrl'
-          }
-        }
-      })
-      .state('tab.account-password', {
-        url: '/account/changePassword',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-change-password.html',
-            controller: 'AccountChangePasswordCtrl as changePasswordCtrl'
-          }
-        }
-      });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');

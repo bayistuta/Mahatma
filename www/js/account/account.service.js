@@ -29,17 +29,21 @@
 				data: { username: username, password: password, grant_type: 'password' }
 			}).then(function (response) {
 				var user = response.data;
-				sessionStorage.setItem(Constants.CACHE_TOKEN_KEY, user.access_token);
-				//get user data
-				$rootScope.showLoadingBar = false;
-				getUserById(user.userId).then(function (responseInner) {
-					if (responseInner.data.Result) {
-						Utils.setObjectInSessionStorage(Constants.CACHE_ACCOUNT_KEY, responseInner.data.Data);
-						deferred.resolve(responseInner);
-					} else {
-						deferred.reject(responseInner);
-					}
-				});
+				if (user) {
+					sessionStorage.setItem(Constants.CACHE_TOKEN_KEY, user.access_token);
+					//get user data
+					$rootScope.showLoadingBar = false;
+					getUserById(user.userId).then(function (responseInner) {
+						if (responseInner.data.Result) {
+							Utils.setObjectInSessionStorage(Constants.CACHE_ACCOUNT_KEY, responseInner.data.Data);
+							deferred.resolve(responseInner);
+						} else {
+							deferred.reject(responseInner);
+						}
+					});
+				} else {
+					deferred.reject(response);
+				}
 				//get account detail
 			}, function (err) {
 				ionicToast.show(err.data.error_description, 'top', false, 4000);
@@ -80,10 +84,11 @@
 			return deferred.promise;
 		}
 
-		function changePassword() {
+		function changePassword(mode, oldPassword, newPassword) {
 			var deferred = $q.defer();
 			var url = applicationConfig.api_url + '/' + 'Account/ChangePassword';
 			$http.post(url, {
+				PasswordType: mode,
 				OldPassword: oldPassword,
 				NewPassword: newPassword,
 				ConfirmPassword: newPassword

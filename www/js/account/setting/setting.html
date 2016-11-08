@@ -1,0 +1,91 @@
+<ion-view view-title="我的账户" class="account">
+	<ion-content padding="false">
+		<div class="account-panel basic">
+			<div class="row">
+				<div class="col">下午好：{{accountCtrl.userName}}</div>
+				<div class="col">用户类型：{{accountCtrl.userType}}</div>
+			</div>
+			<div class="row">
+				<div class="col">所在区域：{{accountCtrl.address}}</div>
+			</div>
+		</div>
+    <div class="split"></div>
+    <div class="account-panel money">
+			<div class="row">
+				<div class="col money-1">
+          <div>
+            <img src="img/icon-left.png" />
+            <span>余额</span>
+            <span>{{accountCtrl.balance}}</span>
+          </div>
+        </div>
+				<div class="col money-1">
+          <div>
+            <img src="img/icon-red.png" />
+            <span>红包</span>
+            <span>{{accountCtrl.red}}</span>
+          </div>
+        </div>
+        <div class="col money-1 last">
+          <div>
+            <img src="img/icon-dai.png" />
+            <div>
+              <span>货款</span>
+              <span>{{accountCtrl.goodsmoney}}</span>
+            </div>
+          </div>
+        </div>
+			</div>
+			<div class="row" style="margin-top:0px;">
+				<div class="col money-2">
+           <div>
+            <img src="img/icon-ye.png"  />
+            <div class="money-text">
+              <span>业绩</span>
+              <span>{{accountCtrl.performance}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col money-2 last">
+           <div>
+              <img src="img/icon-use.png" />
+              <div class="money-text">
+                <span>累计消费</span>
+                <span>{{accountCtrl.totalAmount}}</span>
+              </div>
+            </div>
+        </div>
+			</div>
+		</div>
+    <div class="split"></div>
+    <div class="account-panel money" style="box-shadow:none">
+      <h4>
+        设置
+      </h4>
+      <div class="row" style="margin-top:-10px;">
+				<div class="col money-1">
+          <div>
+            <a href="#/tab/account/changePassword">
+              <img src="img/change-password.png" />   
+              <span>修改密码</span>
+            </a>
+          </div>
+        </div>
+				<div class="col money-1">
+          <div>
+            <img src="img/account-setting.png" />
+            <span>账户设置</span>
+          </div>
+        </div>
+        <div class="col money-1 last">
+          <div>
+            <div style="padding-top:30px;">
+              更多
+            </div>
+          </div>
+        </div>
+			</div>
+    </div>
+    
+	</ion-content>
+</ion-view>
