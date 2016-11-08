@@ -268,7 +268,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
       position: absolute;
       z-index: 99;
       top: 10px;
-      left: 40px; }
+      left: 40px; 
+        &.hide-selector{
+          left: 10px;
+        }
+      }
     .order-list .list-item .order-header .item-checkbox, .order-list ion-item .order-header .item-checkbox {
       border: none;
       display: inline-block;

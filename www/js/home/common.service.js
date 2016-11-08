@@ -29,7 +29,25 @@
         deferred.reject(err.data);
       });
       return deferred.promise;
-    }
+    }	
+
+		var getCategories = function (parentCategoryId) {
+      var deferred = $q.defer();
+      var url = applicationConfig.api_url + '/' + 'Product/GetCategoryList?parentCateId='+ parentCategoryId;
+      $http.post(url
+      ).then(function (response) {
+        if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+      }, function (err) {
+        deferred.reject(err.data);
+      });
+      return deferred.promise;
+    };
+
+
 
 		var init = function () {
 
@@ -39,6 +57,7 @@
 
 		return {
 			getAppversion: getAppversion,
+			getCategories: getCategories
 		};
 	}
 

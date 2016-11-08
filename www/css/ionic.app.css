@@ -10095,6 +10095,8 @@ a.button {
   z-index: 99;
   top: 10px;
   left: 40px; }
+  .order-list .list-item .order-header .order-code.hide-selector, .order-list ion-item .order-header .order-code.hide-selector {
+    left: 10px; }
 
 .order-list .list-item .order-header .item-checkbox, .order-list ion-item .order-header .item-checkbox {
   border: none;

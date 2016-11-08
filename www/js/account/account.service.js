@@ -68,7 +68,7 @@
 			return deferred.promise;
 		}
 
-		function getUserByName() {
+		function getUserByName(name) {
 			var deferred = $q.defer();
 			var url = applicationConfig.api_url + '/' + 'User/GetUserByName?userName=' + name;
 			$http.post(url

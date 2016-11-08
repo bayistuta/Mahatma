@@ -24,7 +24,9 @@
 		}
 
 		function response(response) {
-			$rootScope.$broadcast('loading:hide');
+			if (response.config.url && response.config.url.lastIndexOf('html') < 0) {
+				$rootScope.$broadcast('loading:hide');
+			}
 			if (response.data && !response.data.Result && response.data.ErrorItemList && response.data.ErrorItemList.length) {
 				var message = '';
 				response.data.ErrorItemList.forEach(function (error) {
@@ -36,7 +38,9 @@
 		}
 
 		function responseError (response) {
-			$rootScope.$broadcast('loading:hide')
+			if (response.config.url && response.config.url.lastIndexOf('html') < 0) {
+				$rootScope.$broadcast('loading:hide');
+			}
 			if (response.data && response.data.error_description) {
 				$rootScope.$broadcast('response:error',response.data.error_description);
 			}

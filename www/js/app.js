@@ -54,15 +54,7 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
 
     $stateProvider
       // setup an abstract state for the tabs directive
-      .state('tab.orders', {
-        url: '/orders',
-        views: {
-          'tab-orders': {
-            templateUrl: 'templates/tab-orders.html',
-            controller: 'OrdersCtrl as ordersCtrl'
-          }
-        }
-      })
+      
       .state('tab.approves', {
         url: '/approves',
         views: {
@@ -81,15 +73,7 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
           }
         }
       })
-      .state('tab.orders-create', {
-        url: '/orders/create',
-        views: {
-          'tab-orders': {
-            templateUrl: 'templates/tab-order-create.html',
-            controller: 'OrderCreateCtrl as orderCreateCtrl'
-          }
-        }
-      })
+      
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
