@@ -53,7 +53,7 @@
         </div>
       </ion-item>
     </ion-list>
-    <div ng-if="offlineOrderCtrl.orders.length == 0"  style="text-align:center; padding:30px 0">
+    <div ng-if="offlineOrderCtrl.orders.length == 0 && offlineOrderCtrl.dataLoaded"  style="text-align:center; padding:30px 0">
         当前条件下没有数据.......
     </div>
     <ion-infinite-scroll

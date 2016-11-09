@@ -1,0 +1,56 @@
+<ion-view view-title="我的会员" class="order-list">
+   <ion-nav-buttons side="right">
+      <a class="a-bd" href="#/tab/members/create">
+        <span class="txt">添加</span>
+        <span class="icon"></span>
+      </a>
+    </ion-nav-buttons>
+  <ion-content >
+    <ion-refresher
+      pulling-text="数据刷新中......"
+      on-refresh="memberCtrl.refreshMembers()">
+    </ion-refresher>
+    <div class="list-item list-search">
+      <div class="bar item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="手机号搜索" ng-model="memberCtrl.mobile">
+        </label>
+        <button class="button button-clear btn" ng-click="memberCtrl.search()">
+          查询
+        </button>
+    </div>
+	  </div>
+    <ion-list>
+      <ion-item ng-repeat="member in memberCtrl.members" style="margin-bottom:10px;">
+        <div class="order-goods">
+           <div class="row">
+             <div class="col">
+                  <span >会员账号：{{member.UserName}}</span></div>
+            </div>
+						<div class="row">
+							<div class="col">
+                  <span >姓名：{{member.RealName}}</span></div>
+						</div>
+						<div class="row">
+							<div class="col">
+                  <span >手机号：{{member.Mobile}}</span></div>
+						</div>
+            <div class="row">
+              <div class="col">
+                  <span >注册时间：{{member.RegisterTime | date:'yyyy-MM-dd HH:mm:ss'}}</span></div>
+            </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <div ng-if="memberCtrl.members.length == 0 && memberCtrl.dataLoaded"  style="text-align:center; padding:30px 0">
+        当前条件下没有数据.......
+    </div>
+    <ion-infinite-scroll
+      immediate-check="false"
+      on-infinite="memberCtrl.loadMoreMembers()"
+      ng-if="!memberCtrl.noMoreData"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

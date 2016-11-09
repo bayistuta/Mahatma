@@ -12,22 +12,24 @@
 		vm.pageIndex = 0;
 		vm.orders = [];
 		vm.osn = '';
+		vm.account = null;
 		//basic feature
 		vm.search = search;
 		vm.loadOrders = loadOrders;
 		vm.refreshOrders = refreshOrders;
 		vm.loadMoreOrders = loadMoreOrders;
 		vm.noMoreData = true;
+		vm.dataLoaded = false;
 		//permission
 		vm.canCreateOrder = canCreateOrder;
 		vm.canApproveOrder = canApproveOrder;
-		//operation
+		//operation for approve and confirm orders
 		vm.viewOrder = viewOrder;
 		vm.selectAll = selectAll;
 		vm.isSelectedAll = false;
 		vm.selectOrder = selectOrder;
 		vm.approveOrder = approveOrder;
-		vm.account = null;
+	
 		vm.totalAmount = 0;
 		vm.totalNumber = 0;
 
@@ -56,7 +58,8 @@
 							vm.orders.push(order);
 						});
 					}
-					vm.noMoreData = response.data.Data.Pagination.PageIndex >= response.data.Data.Pagination.TotalCount;
+					vm.noMoreData = response.data.Data.Pagination.PageIndex >= response.data.Data.Pagination.PageCount;
+					vm.dataLoaded = true;
 					$scope.$broadcast('scroll.infiniteScrollComplete');
 					$scope.$broadcast('scroll.refreshComplete');
 				},

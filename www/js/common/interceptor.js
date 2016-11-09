@@ -10,6 +10,10 @@
 
 	function Interceptor($rootScope, $q, Constants) {
 
+		function requestError(config) {
+			return config;
+		}
+
 		function request(config) {
 			var authString;
 			config.headers = config.headers || {};
@@ -50,6 +54,7 @@
 			request: request,
 			response: response,
 			responseError: responseError, 
+			requestError: requestError,
 		};
 	}
 })();

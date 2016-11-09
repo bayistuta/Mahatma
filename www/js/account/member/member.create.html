@@ -1,0 +1,108 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="添加会员" class="order-create">
+  <ion-content padding="false">
+    <form name="userForm" novalidate="novalidate" ng-submit="memberCreateCtrl.createMember()">
+      <ul class="wrap">
+        <li class="row">
+          <span class="txt-t">登陆账号：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="请输入登录账号"  ng-model="memberCreateCtrl.userName"
+              required name="userName"  /></div>
+        </li>
+         <li class="row row-error" ng-show="userForm.userName.$invalid && !userForm.userName.$pristine">
+          <span ng-show="userForm.userName.$error.required">登录账号不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t">登陆密码：</span>
+          <div class="txt-input">
+            <input type="password" class="txt" placeholder="请输入登录密码"  ng-model="memberCreateCtrl.password"
+              required name="password"  /></div>
+        </li>
+        <li class="row row-error" ng-show="userForm.password.$invalid && !userForm.password.$pristine">
+          <span ng-show="userForm.password.$error.required">登录密码不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t">确认密码：</span>
+          <div class="txt-input">
+            <input type="password" class="txt" placeholder="请确认登录密码"  ng-model="memberCreateCtrl.confirmPassword"
+              required name="confirmPassword"  /></div>
+        </li>
+        <li class="row row-error" ng-show="userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine">
+          <span ng-show="userForm.confirmPassword.$error.required">确认密码不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t">真实姓名：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="真实姓名"  ng-model="memberCreateCtrl.realName"
+               name="realName" required /></div>
+        </li>
+        <li class="row row-error" ng-show="userForm.realName.$invalid && !userForm.realName.$pristine">
+          <span ng-show="userForm.realName.$error.required">真实姓名不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t" style="width:70px;">性别：</span>
+          <div style="padding:5px;">
+						<label style="margin-right:10px;" for="genderUnknown"><input type="radio" id="genderUnknown" name="gender" value="0" ng-model="memberCreateCtrl.gender" style="margin-right:5px;" />未知</label>
+						<label style="margin-right:10px;" for="genderMale"><input type="radio" id="genderMale" name="gender" value="1" ng-model="memberCreateCtrl.gender" style="margin-right:5px;"/>男</label>
+						<label style="margin-right:10px;" for="genderFemale"><input type="radio" id="genderFemale" name="gender" value="2" ng-model="memberCreateCtrl.gender" style="margin-right:5px;"/>女</label>
+					</div>  
+        </li>
+				<li class="row">
+          <span class="txt-t">手机号码：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="手机号码"  ng-model="memberCreateCtrl.mobile"
+               name="mobile" required /></div>
+        </li>
+        <li class="row row-error" ng-show="userForm.mobile.$invalid && !userForm.mobile.$pristine">
+          <span ng-show="userForm.mobile.$error.required">手机号码不能为空</span>
+        </li>
+				<li class="row row-t">
+          <span class="txt-t">所在区域：</span>
+          <div class="txt-sel">
+          	<select class="sel" style="width:60px" 
+							ng-model="memberCreateCtrl.selectedProvinceId"
+							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.provinces"
+							ng-change="memberCreateCtrl.changeProvince()"
+							>
+							<option value="">省</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="memberCreateCtrl.selectedCityId"
+							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.cities"
+							ng-change="memberCreateCtrl.changeCity()"
+						>
+							<option value="">市</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="memberCreateCtrl.selectedCountryId"
+							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.countries"
+							ng-change="memberCreateCtrl.changeCountry()"
+						>
+							<option value="">县</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="memberCreateCtrl.selectedTownId"
+							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.towns"
+						>
+							<option value="">乡</option>
+            </select>
+					</div>
+        </li>
+				<li class="row">
+          <span class="txt-t">详细地址：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="详细地址"  ng-model="memberCreateCtrl.address"
+               name="adddress"  /></div>
+        </li>
+			</ul>
+      <button class="button button-block button-positive" type="submit" ng-disabled="userForm.$invalid" style="width:50%;margin:auto;margin-top:20px;">
+        确认
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

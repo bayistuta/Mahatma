@@ -47,6 +47,22 @@
       return deferred.promise;
     };
 
+		var getRegions = function(parentRegionId) {
+			var deferred = $q.defer();
+      var url = applicationConfig.api_url + '/' + 'Region/GetRegionList?parentId='+ parentRegionId;
+      $http.post(url
+      ).then(function (response) {
+        if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+      }, function (err) {
+        deferred.reject(err.data);
+      });
+      return deferred.promise;
+		}
+
 
 
 		var init = function () {
@@ -57,7 +73,8 @@
 
 		return {
 			getAppversion: getAppversion,
-			getCategories: getCategories
+			getCategories: getCategories,
+			getRegions: getRegions,
 		};
 	}
 

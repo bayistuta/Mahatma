@@ -107,7 +107,7 @@
 
 		function sendSmsVerifyCode(mobile) {
 			var deferred = $q.defer();
-			var url = applicationConfig.api_url + '/' + 'user/SendSmsVerifyCode?mobile='+ mobile;
+			var url = applicationConfig.api_url + '/' + 'user/SendSmsVerifyCode?mobile=' + mobile;
 			$http.post(url, {
 			}
 			).then(function (response) {
@@ -143,6 +143,53 @@
 			return deferred.promise;
 		}
 
+		function getMembers(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'MyUser/MyUserList';
+			$http.post(url, {
+				UserName: options.userName,
+				Mobile: options.mobile,
+				PageIndex: options.pageIndex + 1,
+				PageSize: 10
+			}
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function createMember(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'MyUser/AddUser';
+			$http.post(url, {
+				UserName: options.userName,
+				RealName: options.realName,
+				Mobile: options.mobile,
+				VerifyCode: options.verifyCode,
+				Gender: options.gender,
+				RegionId: options.regionId,
+				Address: options.address,
+				Password: options.password,
+				ConfirmPassword: options.password,
+			}
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
 
 
 		var init = function () {
@@ -158,6 +205,7 @@
 			changePassword: changePassword,
 			sendSmsVerifyCode: sendSmsVerifyCode,
 			resetPassword: resetPassword,
+			getMembers: getMembers
 		};
 	}
 
