@@ -5,9 +5,10 @@
 		.controller('OfflineOrderCtrl', OfflineOrderCtrl);
 
 	OfflineOrderCtrl.$inject = ['$scope', 'Utils', 'OrderService', 'Constants', 
-		'ionicToast', 'params', '$rootScope', '$ionicPopup'];
+		'ionicToast', 'params', '$rootScope', '$ionicPopup', 'AccountService'];
 
-	function OfflineOrderCtrl($scope, Utils, OrderService, Constants, ionicToast, params, $rootScope, $ionicPopup) {
+	function OfflineOrderCtrl($scope, Utils, OrderService, Constants, ionicToast, 
+		params, $rootScope, $ionicPopup, AccountService) {
 		var vm = this;
 		vm.pageIndex = 0;
 		vm.orders = [];
@@ -23,12 +24,14 @@
 		//permission
 		vm.canCreateOrder = canCreateOrder;
 		vm.canApproveOrder = canApproveOrder;
+		vm.canConfirmOrder = canConfirmOrder;
 		//operation for approve and confirm orders
 		vm.viewOrder = viewOrder;
 		vm.selectAll = selectAll;
 		vm.isSelectedAll = false;
 		vm.selectOrder = selectOrder;
 		vm.approveOrder = approveOrder;
+		vm.confirmOrder = confirmOrder;
 	
 		vm.totalAmount = 0;
 		vm.totalNumber = 0;
@@ -92,7 +95,11 @@
 		}
 
 		function canApproveOrder() {
-			return (vm.account.MallAgid === 7 || vm.account.MallAgid === 12 || vm.account.MallAgid === 13) && params.type == 'approveOrders';
+			return params.type == 'approveOrders';
+		}
+
+		function canConfirmOrder() {
+			return params.type == 'confirmOrders';
 		}
 
 		function viewOrder(order) {
@@ -142,6 +149,40 @@
               ionicToast.show('审核成功', 'top', false, 1500);
 							refreshOrders();
             })
+          }
+        });
+      }
+		}
+
+		function confirmOrder() {
+			var selectedOrders = [];
+			$scope.data = {
+				password: '',
+		  };
+      vm.orders.forEach(function (order) {
+        if (order.isSelected) {
+          selectedOrders.push(order.Oid);
+        }
+      });
+      if (selectedOrders.length > 0) {
+        $ionicPopup.confirm({
+          title: '提示',
+          template: '<div>请输入支付密码，并确认你所选中的订单。</div><div><input type="password" ng-model="data.password" style="border:solid 1px #cfcfcf;padding:0px 10px"></div>',
+          cancelText: '取消',
+          okText: '确认',
+					scope: $scope,
+        }).then(function (approve) {
+          if (approve) {
+						if ($scope.data.password.length <= 0) {
+							ionicToast.show('请输入支付密码', 'top', false, 1500);
+						} else {
+							AccountService.checkPayPassword($scope.data.password).then(function() {
+								OrderService.confirmOrders(selectedOrders).then(function() {
+									ionicToast.show('恭喜您，订单确认成功！', 'top', false, 1500);
+									search();
+								});
+							});
+						}
           }
         });
       }

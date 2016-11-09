@@ -108,6 +108,22 @@
       return deferred.promise;
     };
 
+		var getOrderDetail = function (orderId) {
+      var deferred = $q.defer();
+      var url = applicationConfig.api_url + '/' + 'OfflineOrder/GetOrder?oid=' + orderId;
+      $http.post(url
+      ).then(function (response) {
+        if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+      }, function (err) {
+        deferred.reject(err.data);
+      });
+      return deferred.promise;
+    };
+
 		var init = function () {
 
 		};
@@ -119,7 +135,8 @@
 			confirmOrders: confirmOrders,
 			denyOrder: denyOrder,
 			auditOrders: auditOrders,
-			createOrder: createOrder
+			createOrder: createOrder,
+			getOrderDetail: getOrderDetail
 		};
 	}
 

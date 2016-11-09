@@ -51,30 +51,6 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
     // Each state's controller can be found in controllers.js
     $httpProvider.interceptors.push('Interceptor');
     $ionicConfigProvider.tabs.position('bottom'); 
-
-    $stateProvider
-      // setup an abstract state for the tabs directive
-      
-      .state('tab.approves', {
-        url: '/approves',
-        views: {
-          'tab-approves': {
-            templateUrl: 'templates/tab-approves.html',
-            controller: 'ApproversCtrl as approvesCtrl'
-          }
-        }
-      })
-      .state('tab.approve-detail', {
-        url: '/approve-detail/:orderId',
-        views: {
-          'tab-approves': {
-            templateUrl: 'templates/tab-approve-detail.html',
-            controller: 'ApproveDetailCtrl as approveDetailCtrl'
-          }
-        }
-      })
-      
-
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
 

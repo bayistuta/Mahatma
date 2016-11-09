@@ -81,5 +81,15 @@
 						}
 					}
 				})
+				.state('tab.orders-approve', {
+					url: '/approve-detail/:orderId',
+					views: {
+						'tab-approveOrders': {
+							templateUrl: 'js/order/offlineOrder/offlineOrder.approve.html',
+							controller: 'OrderApproveCtrl as orderApproveCtrl'
+						}
+					}
+				})
+
 		});
 })();

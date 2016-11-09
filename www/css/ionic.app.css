@@ -10130,6 +10130,7 @@ a.button {
 .order-list .approve-bar .item-checkbox {
   border: none;
   float: left;
+  height: 55px;
   background: url("../img/approve-bar-bg.png") !important; }
 
 .order-list .approve-bar .item-checkbox .item-content {
@@ -10154,11 +10155,18 @@ a.button {
   width: 150px; }
 
 .order-list .approve-bar .approve-button a {
-  background-image: url("../img/approve.png");
+  background-image: url("../img/bar-bg.png");
   background-size: 150px 55px;
   display: inline-block;
   height: 55px;
-  width: 150px; }
+  line-height: 55px;
+  width: 150px;
+  text-align: center;
+  font-size: 20px;
+  font-family: '\5fae\8f6f\96c5\9ed1';
+  color: #fff;
+  word-spacing: 8px;
+  letter-spacing: 6px; }
 
 .a-bd {
   position: absolute;
@@ -10453,3 +10461,6 @@ a.button {
 
 .order-dialog .popup .popup-head {
   display: none; }
+
+.blue-button {
+  background-image: url("../img/bar-bg.png"); }

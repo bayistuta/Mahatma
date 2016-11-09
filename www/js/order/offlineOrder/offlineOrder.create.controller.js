@@ -108,7 +108,7 @@
 			}).then(
 				function (data) {
 					ionicToast.show('报单成功', 'top', false, 1000);
-					Utils.toLocation('/tab/orders');
+					Utils.toLocation('/tab/orders', true);
 				});
 		}
 	}

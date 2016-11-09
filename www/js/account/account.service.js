@@ -190,6 +190,22 @@
 			return deferred.promise;
 		}
 
+		function checkPayPassword(password) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/CheckPayPassword?password='+password;
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
 
 
 		var init = function () {
@@ -205,7 +221,9 @@
 			changePassword: changePassword,
 			sendSmsVerifyCode: sendSmsVerifyCode,
 			resetPassword: resetPassword,
-			getMembers: getMembers
+			getMembers: getMembers,
+			checkPayPassword: checkPayPassword,
+			createMember: createMember,
 		};
 	}
 

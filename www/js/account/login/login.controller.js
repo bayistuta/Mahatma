@@ -18,6 +18,8 @@
     function init() {
       sessionStorage.removeItem(Constants.CACHE_TOKEN_KEY);
       sessionStorage.removeItem(Constants.CACHE_ACCOUNT_KEY);
+      localStorage.removeItem("userName");
+      localStorage.removeItem("password");
     }
     function signIn() {
       if (vm.username.length > 0 && vm.password.length > 0) {

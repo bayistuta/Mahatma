@@ -63,7 +63,7 @@
       distance="1%">
     </ion-infinite-scroll>
   </ion-content>
-  <ion-footer-bar align-title="left" class="approve-bar" ng-if="offlineOrderCtrl.canApproveOrder() && offlineOrderCtrl.orders.length > 0">
+  <ion-footer-bar align-title="left" class="approve-bar" ng-if="(offlineOrderCtrl.canApproveOrder() || offlineOrderCtrl.canConfirmOrder()) && offlineOrderCtrl.orders.length > 0">
     <div >
       <span class="selectAll" ng-click="offlineOrderCtrl.selectAll()">全选</span>
       <ion-checkbox class="checkbox-positive checkbox-circle" ng-change="offlineOrderCtrl.selectAll()" ng-model="offlineOrderCtrl.isSelectedAll"></ion-checkbox>
@@ -71,8 +71,14 @@
         <span>总数：{{offlineOrderCtrl.totalNumber}}</span><br/>
         <span>总额：{{offlineOrderCtrl.totalAmount.toFixed(2)}}</span>
       </div>
-      <div class="approve-button">
+      <div class="approve-button" ng-if="offlineOrderCtrl.canApproveOrder()">
         <a ng-click="offlineOrderCtrl.approveOrder()">
+          一键审核
+        </a>
+      </div>
+       <div class="approve-button" ng-if="offlineOrderCtrl.canConfirmOrder()">
+        <a ng-click="offlineOrderCtrl.confirmOrder()">
+          确认订单
         </a>
       </div>
     </div>
