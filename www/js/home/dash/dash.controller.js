@@ -13,11 +13,16 @@
 		vm.isSeller = isSeller;
 		vm.isLogin = isLogin;
 		vm.checkAppVersion = checkAppVersion;
+		vm.signOut = signOut;
 		init();
 
 		function init() {
 			vm.checkAppVersion();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
+		}
+
+		function signOut() {
+			Utils.toLocation('/login', true);
 		}
 
 		function checkAppVersion() {
