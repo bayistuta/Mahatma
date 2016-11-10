@@ -1,0 +1,7 @@
+cordova build --release android
+
+F:\Project\mahatma\platforms\android\build\outputs\apk
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mahatma.keystore android-release-unsigned.apk mahatma
+
+zipalign -v 4 android-release-unsigned.apk mahatam.apk

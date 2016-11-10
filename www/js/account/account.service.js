@@ -127,6 +127,7 @@
 			var url = applicationConfig.api_url + '/' + 'Account/ResetPassword';
 			$http.post(url, {
 				Mobile: mobile,
+				VerifyCode: verifyCode,
 				PasswordType: 0,
 				NewPassword: newPassword,
 				ConfirmPassword: newPassword

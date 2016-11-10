@@ -11,7 +11,7 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 	
   <!-- Confirm orders Tab -->
-  <ion-tab title="确认订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/confirmOrders" >
+  <ion-tab title="确认订单" icon-off="icon-confirm" icon-on="icon-confirm" href="#/tab/confirmOrders"  class="{{tabCtrl.isShow([4])}}">
     <ion-nav-view name="tab-confirmOrders"></ion-nav-view>
   </ion-tab>
 
@@ -26,7 +26,7 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
 	 <!-- My Member Tab -->
-  <ion-tab title="我的会员" icon-off="icon-order" icon-on="icon-order" href="#/tab/members" class="{{tabCtrl.isShow([2,4,9,10])}}">
+  <ion-tab title="我的会员" icon-off="icon-member" icon-on="icon-member" href="#/tab/members" class="{{tabCtrl.isShow([2,4,9,10])}}">
     <ion-nav-view name="tab-members"></ion-nav-view>
   </ion-tab>
 

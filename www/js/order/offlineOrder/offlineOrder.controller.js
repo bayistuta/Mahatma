@@ -46,6 +46,9 @@
 		}
 
 		function loadOrders() {
+			if (vm.pageIndex === 0) {
+				vm.orders = [];
+			}
 			OrderService.getOrders({
 				pageIndex: vm.pageIndex,
 				osn: vm.osn,
@@ -53,9 +56,6 @@
 			}).then(
 				function (response) {
 					if (response.data.Data.OfflineOrderList.length > 0) {
-						if (response.data.Data.Pagination.PageIndex == 1) {
-							vm.orders = [];
-						}
 						response.data.Data.OfflineOrderList.forEach(function (order) {
 							order.isSelected = false;
 							vm.orders.push(order);

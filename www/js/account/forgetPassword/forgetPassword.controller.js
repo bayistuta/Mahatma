@@ -44,7 +44,7 @@
 				ionicToast.show('新密码与确认密码不一致', 'top', false, 1000);
 				return;
 			}
-			AccountService.resetPassword(vm.verifyCode, vm.newPassword).then(function() {
+			AccountService.resetPassword(vm.mobile, vm.verifyCode, vm.newPassword).then(function() {
 				ionicToast.show('恭喜您，密码重置成功', 'top', false, 1000);
 				Utils.toLocation('/login', true);
 			});
