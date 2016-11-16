@@ -32,11 +32,13 @@
 		vm.cashCommissionMoney = '';
 		vm.redCommissionMoney = '';
 		vm.payPassword = '';
-
+		vm.changeCashCommissionMoney = changeCashCommissionMoney;
+		vm.account = null;
 		init();
 
 		function init() {
 			var account = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY);
+			vm.account = account;
 			if (account.UserShopList.length > 0) {
 				vm.storeName = account.UserShopList[0].StoreName;
 				vm.storeId = account.UserShopList[0].StoreId;
@@ -47,6 +49,13 @@
 
 		function calcCommissionMoney() {
 			vm.commissionMoney = (vm.cashMoney * 0.15).toFixed(2) - 0.0;
+			vm.cashCommissionMoney = vm.commissionMoney; 
+		}
+
+		function changeCashCommissionMoney() {
+			if (vm.cashCommissionMoney < vm.commissionMoney ) {
+				vm.redCommissionMoney = (((vm.commissionMoney - vm.cashCommissionMoney) / 85) * 100).toFixed(2) - 0.0;
+			}
 		}
 
 		function changePayModel() {
@@ -86,8 +95,16 @@
 		}
 
 		function createOrder() {
-			if (vm.commissionMoney > 0 && ((vm.cashCommissionMoney - 0.0) + (vm.redCommissionMoney - 0.0)) != (vm.commissionMoney - 0)) {
-				ionicToast.show('请输入正确的广告费金额', 'top', false, 2500);
+			if (vm.account.Balance < vm.cashCommissionMoney) {
+				ionicToast.show('账户金额不足以支付该平台服务费', 'top', false, 2500);
+				return;
+			}
+			if (vm.cashCommissionMoney < (vm.commissionMoney * 0.5)) {
+				ionicToast.show('现金支付平台服务费金额不能小于50%', 'top', false, 2500);
+				return;
+			}
+			if (vm.account.RedMoney < vm.redCommissionMoney) {
+				ionicToast.show('红包金额不足以支付该订单平台服务费', 'top', false, 2500);
 				return;
 			}
 
@@ -107,8 +124,13 @@
 				PayPassword: vm.payPassword
 			}).then(
 				function (data) {
-					ionicToast.show('报单成功', 'top', false, 1000);
-					Utils.toLocation('/tab/orders', true);
+					AccountService.getUserById(vm.account.Uid).then(function (response) {
+						if (response.data.Result) {
+							Utils.setObjectInSessionStorage(Constants.CACHE_ACCOUNT_KEY, response.data.Data);
+							ionicToast.show('报单成功', 'top', false, 1000);
+							Utils.toLocation('/tab/orders', true);
+						}
+					});
 				});
 		}
 	}

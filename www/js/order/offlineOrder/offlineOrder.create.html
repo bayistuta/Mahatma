@@ -88,11 +88,11 @@
         </li>
         <li class="row">
           <span class="txt-t">现金支付服务费：</span>
-          <div class="txt-input"><input type="number" class="txt"  name="cashCommissionMoney" ng-model="orderCreateCtrl.cashCommissionMoney" style="width:205px;" /></div>
+          <div class="txt-input"><input type="number" class="txt"  name="cashCommissionMoney" ng-model="orderCreateCtrl.cashCommissionMoney" style="width:205px;" ng-change="orderCreateCtrl.changeCashCommissionMoney()" /></div>
         </li>
         <li class="row">
           <span class="txt-t" >红包支付服务费：</span>
-          <div class="txt-input"><input type="number" class="txt"  name="redCommissionMoney" ng-model="orderCreateCtrl.redCommissionMoney" style="width:205px;" /></div>
+          <div class="txt-input"><input type="number" class="txt"  name="redCommissionMoney" ng-model="orderCreateCtrl.redCommissionMoney" style="width:205px;" readonly /></div>
         </li>
         <li class="row" style="margin-top:30px;">
           <span class="txt-t">支付密码：</span>
