@@ -8,11 +8,5 @@
   "watchPatterns": [
     "www/**/*",
     "!www/lib/**/*"
-  ],
-  "proxies": [
-    {
-      "path": "/api",
-      "proxyUrl": "http://dsjtchina.com:9991/api"
-    }
   ]
 }
