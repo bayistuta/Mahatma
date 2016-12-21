@@ -207,6 +207,40 @@
 			return deferred.promise;
 		}
 
+		function recharge(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/Recharge';
+			$http.post(url, {
+				Money: 0.1,
+				RechargeType: '微信'
+			}
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function recharge2(options) {
+			var deferred = $q.defer();
+			$http.get('http://123.57.239.214:8080/payment_demo.php'
+			).then(function (response) {
+				if (response.data) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
 
 
 		var init = function () {
@@ -225,6 +259,8 @@
 			getMembers: getMembers,
 			checkPayPassword: checkPayPassword,
 			createMember: createMember,
+			recharge: recharge,
+			recharge2: recharge2
 		};
 	}
 

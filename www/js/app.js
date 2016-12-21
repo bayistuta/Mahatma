@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('mahatma', ['ionic', 'ionic-toast'])
+angular.module('mahatma', ['ionic', 'ionic-toast', 'ngCordova'])
   .run(function ($ionicPlatform, $rootScope, $state, $location, Constants, Utils, $ionicLoading, ionicToast) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -13,8 +13,8 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
+      
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
@@ -58,10 +58,10 @@ angular.module('mahatma', ['ionic', 'ionic-toast'])
 
 //config file 
 var applicationConfig = {
-  token_url: 'http://dsjtchina.com:8881/token',
-  api_url: 'http://dsjtchina.com:8881/api',
+  //token_url: 'http://dsjtchina.com:8881/token',
+  //api_url: 'http://dsjtchina.com:8881/api',
   version: '1.0.4',
-  //token_url: 'http://dsjtchina.com:9991/token',
+  token_url: 'http://test001.dsjtchina.com:9991/token',
   //api_url: 'http://dsjtchina.com:9991/api',
-  //api_url: 'http://localhost:8100/api',
+  api_url: 'http://localhost:8100/api',
 };

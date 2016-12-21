@@ -4,9 +4,9 @@
 	angular.module('mahatma')
 		.controller('DashCtrl', DashCtrl);
 
-	DashCtrl.$inject = ['Utils', 'CommonService', 'Constants', '$ionicPopup'];
+	DashCtrl.$inject = ['Utils', 'CommonService', 'Constants', '$ionicPopup', '$cordovaContacts'];
 
-	function DashCtrl(Utils, CommonService, Constants, $ionicPopup) {
+	function DashCtrl(Utils, CommonService, Constants, $ionicPopup, $cordovaContacts) {
 		var vm = this;
 		vm.account = null;
 		vm.notify = notify;
@@ -19,6 +19,9 @@
 		function init() {
 			vm.checkAppVersion();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
+			if ($cordovaContacts) {
+				
+			}
 		}
 
 		function signOut() {
