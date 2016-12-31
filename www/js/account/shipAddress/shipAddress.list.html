@@ -1,0 +1,29 @@
+<ion-view view-title="收获地址" class="order-list">
+   <ion-nav-buttons side="right">
+      <a class="a-bd" href="#/tab/account/shipAddressCreate">
+        <span class="txt">新增</span>
+        <span class="icon"></span>
+      </a>
+    </ion-nav-buttons>
+  <ion-content >
+    <ion-list>
+      <ion-item ng-repeat="address in shipAddressListCtrl.addresses">
+        <div class="order-goods">
+           <div class="row">
+             <div class="col">
+                  <span >{{address.Consignee}}</span></div>
+              <div class="col">
+                  <span style="float:right">{{address.Mobile}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col">
+									{{address.ProvinceName+address.CityName+address.CountyName+address.TownName+address.Address}}</div>
+            </div>
+        </div>
+        <div class="order-footer">
+         <ion-checkbox class="checkbox-dark checkbox-square" ng-model="order.isDefault"></ion-checkbox>
+        </div>
+      </ion-item>
+		</ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,86 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="添加收获地址" class="order-create">
+  <ion-content padding="false">
+    <form name="userForm" novalidate="novalidate" ng-submit="shipAddressCreateCtrl.createShipAddress()">
+      <ul class="wrap">
+        <li class="row">
+          <span class="txt-t">收货人：&nbsp;&nbsp;&nbsp;</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="收货人姓名"  ng-model="shipAddressCreateCtrl.userName"
+              required name="userName"  /></div>
+        </li>
+         <li class="row row-error" ng-show="userForm.userName.$invalid && !userForm.userName.$pristine">
+          <span ng-show="userForm.userName.$error.required">收货人姓名不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t">别名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="收货人别名"  ng-model="shipAddressCreateCtrl.alias"
+              required name="alias"  /></div>
+        </li>
+         <li class="row row-error" ng-show="userForm.alias.$invalid && !userForm.alias.$pristine">
+          <span ng-show="userForm.alias.$error.required">收货人姓名不能为空</span>
+        </li>
+				<li class="row">
+          <span class="txt-t">手机号码：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="手机号码"  ng-model="shipAddressCreateCtrl.mobile"
+               name="mobile" required /> 
+          </div>
+        </li>
+        <li class="row row-error" ng-show="userForm.mobile.$invalid && !userForm.mobile.$pristine">
+          <span ng-show="userForm.mobile.$error.required">手机号码不能为空</span>
+        </li>
+				<li class="row row-t">
+          <span class="txt-t">所在区域：</span>
+          <div class="txt-sel">
+          	<select class="sel" style="width:60px" 
+							ng-model="shipAddressCreateCtrl.selectedProvinceId"
+							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.provinces"
+							ng-change="shipAddressCreateCtrl.changeProvince()"
+							>
+							<option value="">省</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="shipAddressCreateCtrl.selectedCityId"
+							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.cities"
+							ng-change="shipAddressCreateCtrl.changeCity()"
+						>
+							<option value="">市</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="shipAddressCreateCtrl.selectedCountryId"
+							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.countries"
+							ng-change="shipAddressCreateCtrl.changeCountry()"
+						>
+							<option value="">县</option>
+            </select>
+						<select class="sel" style="width:60px"
+							ng-model="shipAddressCreateCtrl.selectedTownId"
+							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.towns"
+						>
+							<option value="">乡</option>
+            </select>
+					</div>
+        </li>
+				<li class="row">
+          <span class="txt-t">详细地址：</span>
+          <div class="txt-input">
+            <input type="text" class="txt" placeholder="详细地址"  ng-model="shipAddressCreateCtrl.address"
+               name="adddress"  /></div>
+        </li>
+				 <li class="row row-error" ng-show="userForm.address.$invalid && !userForm.address.$pristine">
+          <span ng-show="userForm.address.$error.required">详细地址不能为空</span>
+        </li>
+			</ul>
+      <button class="button button-block button-positive" type="submit" ng-disabled="userForm.$invalid" style="width:50%;margin:auto;margin-top:20px;">
+        确认
+      </button>
+    </form>
+  </ion-content>
+</ion-view>

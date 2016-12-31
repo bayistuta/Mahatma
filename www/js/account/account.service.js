@@ -241,6 +241,90 @@
 			return deferred.promise;
 		}
 
+		function getShipAddress() {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/ShipAddressList';
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function addShipAddress(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/AddShipAddress';
+			$http.post(url,
+			options
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function getFavoriteProductList(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/FavoriteProductList';
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function getFavoriteStoreList(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/FavoriteStoreList';
+			$http.post(url,{
+				StoreName: '',
+				PageIndex: 0,
+				PageSize: 10,
+			}
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function getReChargeInfo(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/GetRechargeInfo';
+			$http.post(url).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
 
 
 		var init = function () {
@@ -260,7 +344,11 @@
 			checkPayPassword: checkPayPassword,
 			createMember: createMember,
 			recharge: recharge,
-			recharge2: recharge2
+			recharge2: recharge2,
+			getShipAddress: getShipAddress,
+			addShipAddress: addShipAddress,
+			getFavoriteProductList: getFavoriteProductList,
+			getFavoriteStoreList: getFavoriteStoreList
 		};
 	}
 

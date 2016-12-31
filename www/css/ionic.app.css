@@ -10476,3 +10476,16 @@ a.button {
 
 .blue-button {
   background-image: url("../img/bar-bg.png"); }
+
+/*new*/
+.order-list .order-footer {
+  position:relative;
+  height: 40px;
+}
+.order-list .order-footer .item-checkbox {
+  border: none;
+  display: inline-block;
+  position: absolute;
+  bottom: 5px;
+  left: -8px;
+}
