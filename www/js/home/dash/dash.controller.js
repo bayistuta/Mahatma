@@ -4,9 +4,11 @@
 	angular.module('mahatma')
 		.controller('DashCtrl', DashCtrl);
 
-	DashCtrl.$inject = ['Utils', 'CommonService', 'Constants', '$ionicPopup', '$cordovaContacts'];
+	DashCtrl.$inject = ['$scope', 'Utils', 'CommonService', 'Constants', '$ionicPopup', '$cordovaContacts',
+		'advertList'];
 
-	function DashCtrl(Utils, CommonService, Constants, $ionicPopup, $cordovaContacts) {
+	function DashCtrl($scope, Utils, CommonService, Constants, $ionicPopup, $cordovaContacts,
+		advertList) {
 		var vm = this;
 		vm.account = null;
 		vm.notify = notify;
@@ -14,14 +16,17 @@
 		vm.isLogin = isLogin;
 		vm.checkAppVersion = checkAppVersion;
 		vm.signOut = signOut;
+		vm.advertList = [];
 		init();
 
 		function init() {
+			vm.swiperOptions = {
+				autoplay: 3000,
+			};
+			vm.advertList = advertList.data.Data.AdvertList;
 			vm.checkAppVersion();
+			//vm.getAdvertList();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
-			if ($cordovaContacts) {
-				
-			}
 		}
 
 		function signOut() {
@@ -50,7 +55,6 @@
 				}
 			});
 		}
-
 
 		function notify() {
 			ionicToast.show('模块开发中', 'middle', false, 2500);

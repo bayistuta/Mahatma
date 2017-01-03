@@ -14,6 +14,11 @@
 					},
 					data: {
 						requireLogin: false,
+					},
+					resolve: {
+						advertList: function($q, $timeout, CommonService){
+							return CommonService.getAdvertList();
+						}
 					}
 				})
 		});

@@ -10415,6 +10415,12 @@ a.button {
 
 .home-page .banner {
   width: 100%; }
+.home-page ion-slides {
+  height: 123px !important;
+}
+.home-page ion-slides img {
+  width: 100%;
+}
 
 .home-page .menu-item {
   display: block;
@@ -10476,3 +10482,56 @@ a.button {
 
 .blue-button {
   background-image: url("../img/bar-bg.png"); }
+
+.category-page .category-list {
+  width: 28%;
+  float: left;
+}
+.category-page .category-list .item{
+  background: #f0f0f0;
+}
+.category-page .category-list .item.selected{
+  background: #fff;
+  color: #4183d7;
+}
+.category-page .category-list .item.selected:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: auto;
+  left: 0;
+  height: 100%;
+  width: 2px;
+  background: #4183d7;
+}
+
+.category-page .products-list {
+  width: 70%;
+  float: right;
+}
+.category-page .products-list dl{
+  display: block;
+  overflow: hidden;
+}
+.category-page .products-list dt{
+  padding-bottom: 10px;
+}
+
+.category-page .products-list dd {
+  float:left;
+  width: 33.33333%;
+  text-align:center;
+}
+.category-page .products-list dd img{
+  width: 100%;
+}
+.category-page .products-list dd a{
+  color: #999;
+  font-size:12px;
+  width: 95%;
+  display:block;
+  text-decoration: none;
+}
+
+
+

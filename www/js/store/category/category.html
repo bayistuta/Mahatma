@@ -1,0 +1,33 @@
+<ion-view view-title="分类" class="category-page">
+  <ion-content>
+     <div class="list category-list" style="height:100%">
+         <ion-scroll direction="y" style="height:100%;">
+            <a class="item" 
+            ng-class="{'selected': categoryCtrl.selectedCategory==category}"
+            ng-repeat="category in categoryCtrl.categories" 
+            ng-click="categoryCtrl.selectCategory(category)">
+            {{category.CategroyName}}
+            </a>
+        </ion-scroll>
+    </div>
+    <div class="products-list" style="height:100%">
+        <ion-scroll direction="y" style="height:100%;">
+            <div ng-repeat="category in categoryCtrl.subCategories">
+                <dl>
+                    <dt>{{category.CategroyName}}</dt>
+                    <dd ng-repeat="child in category.children">
+                        <a href="#/tab/products/{{child.CateId}}">
+                            <img ng-src="{{child.IconImage}}" onerror="this.src='img/logo_login.jpg'" />
+                            <p>
+                                {{child.CategroyName}}
+                            </p>
+                        </a>
+                    </dd>
+                </dl>
+            </div>
+        </ion-scroll>
+    </div>
+
+  </ion-content>
+  
+</ion-view>

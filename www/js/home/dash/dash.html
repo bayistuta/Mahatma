@@ -5,7 +5,11 @@
       </a>
   </ion-nav-buttons>
   <ion-content>
-    <img src="img/banner.jpg" class="banner" />
+    <ion-slides options="dashCtrl.swiperOptions" slider="data.slider">
+      <ion-slide-page ng-repeat="adv in dashCtrl.advertList track by $index">
+        <img ng-src="{{adv.Image}}" >
+      </ion-slide-page>
+    </ion-slides>
     <div class="row  border-row">
       <div class="col col-25" ng-if="dashCtrl.isSeller()">
         <a class="menu-item" href="#/tab/orders/create">
