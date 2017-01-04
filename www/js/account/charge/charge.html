@@ -1,0 +1,32 @@
+<ion-view view-title="充值记录" class="charge-list">
+  <ion-content>
+		<div class="list">
+			<div class="item" ng-repeat="recharge in chargeCtrl.reCharges">
+				<div class="row first-row">
+					<div class="col price">
+						{{recharge.Money | number:2}}
+					</div>
+					<div class="col state" style="text-align:right">
+						{{recharge.RechargeType}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						充值编号
+					</div>
+					<div class="col" style="text-align:right">
+						{{recharge.Rid}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						充值时间
+					</div>
+					<div class="col" style="text-align:right">
+						{{recharge.AddTime | date:'yyyy-MM-dd HH:mm:ss'}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

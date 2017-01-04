@@ -6,32 +6,36 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-striped tabs-light" ng-class="{'tabs-item-hide': tabCtrl.isShowTabs()}">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="首页" icon-off="icon-home" icon-on="icon-home" href="#/tab/dash">
+  <ion-tab title="首页" icon-off="iconfont icon-icon-test37" icon-on="iconfont icon-icon-test37" href="#/tab/dash">
     <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+   <ion-tab title="分类" icon-off="iconfont icon-icon-test31" icon-on="iconfont icon-icon-test31" href="#/tab/categories">
+    <ion-nav-view name="tab-categories"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="购物车" icon-off="iconfont icon-icon-test38" icon-on="iconfont icon-icon-test38" href="#/tab/cart">
+    <ion-nav-view name="tab-cart"></ion-nav-view>
   </ion-tab>
 	
   <!-- Confirm orders Tab -->
-  <ion-tab title="确认订单" icon-off="icon-confirm" icon-on="icon-confirm" href="#/tab/confirmOrders"  class="{{tabCtrl.isShow([4])}}">
+  <ion-tab title="确认订单" icon-off="iconfont icon-icon-test41" icon-on="iconfont icon-icon-test41" href="#/tab/confirmOrders"  class="{{tabCtrl.isShow([4])}}">
     <ion-nav-view name="tab-confirmOrders"></ion-nav-view>
   </ion-tab>
 
   <!-- Orders Tab -->
-  <ion-tab title="线下订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/orders" class="{{tabCtrl.isShow([2,5,6,8,9,10])}}">
+  <ion-tab title="线下订单" icon-off="iconfont icon-icon-test9" icon-on="iconfont icon-icon-test9" href="#/tab/orders" class="{{tabCtrl.isShow([2,5,6,8,9,10])}}">
     <ion-nav-view name="tab-orders"></ion-nav-view>
   </ion-tab>
 
   <!-- Approves Tab -->
-  <ion-tab title="审核订单" icon-off="icon-order" icon-on="icon-order" href="#/tab/approveOrders" class="{{tabCtrl.isShow([7,12,13])}}">
+  <ion-tab title="审核订单" icon-off="iconfont icon-icon-test9" icon-on="iconfont icon-icon-test9" href="#/tab/approveOrders" class="{{tabCtrl.isShow([7,12,13])}}">
     <ion-nav-view name="tab-approveOrders"></ion-nav-view>
   </ion-tab>
 
-	 <!-- My Member Tab -->
-  <ion-tab title="我的会员" icon-off="icon-member" icon-on="icon-member" href="#/tab/members" class="{{tabCtrl.isShow([2,4,9,10])}}">
-    <ion-nav-view name="tab-members"></ion-nav-view>
-  </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="我的账户" icon-off="icon-account" icon-on="icon-account" href="#/tab/account">
+  <ion-tab title="我的账户" icon-off="iconfont icon-icon-test36" icon-on="iconfont icon-icon-test36" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

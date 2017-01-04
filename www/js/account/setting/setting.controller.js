@@ -17,6 +17,8 @@
     vm.performance = 0;
     vm.totalAmount = 0;
 
+    vm.goTo = goTo;
+
     init();
     function init() {
       var account = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY);
@@ -29,6 +31,10 @@
       vm.performance = parseFloat(account.Performance).toFixed(2);
       vm.totalAmount = parseFloat(account.TotalAmount).toFixed(2);
       vm.userName = account.UserName;
+    }
+
+    function goTo(location) {
+      Utils.toLocation(location, false);
     }
   }
 })();

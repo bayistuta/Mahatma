@@ -1,0 +1,72 @@
+<ion-view view-title="商品详情" hide-nav-bar="true" class="product-detail">
+  <ion-content>
+		 <ion-slides options="productDetailCtrl.swiperOptions" slider="data.slider" >
+      <ion-slide-page ng-repeat="img in productDetailCtrl.product.ProductImageList track by $index">
+        <img ng-src="{{img.ShowImg}}" onerror="this.src='img/banner.jpg';this.style.background='#0086b3'">
+      </ion-slide-page>
+    </ion-slides>
+		<div class="product-panel product-basic">
+			<div class="row">
+				<div class="col">
+					{{productDetailCtrl.product.ProductInfo.Name}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col price">
+					¥{{productDetailCtrl.product.ProductInfo.ShopPrice | number:2}}
+				</div>
+				<div class="col count" style="text-align:right">
+					月销{{productDetailCtrl.product.ProductInfo.SaleCount}}
+				</div>
+			</div>
+		</div>
+		<div class="product-panel product-store">
+			<div class="row">
+				<div class="col">
+					<span class="st">店铺</span>
+					<span>{{productDetailCtrl.product.StoreInfo.Name}}</span>
+				</div>
+				<div class="col">
+					<span class="st">卖家</span>
+					<span>{{productDetailCtrl.product.StoreKeeperInfo.Name}}</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<span class="nt">商品描述</span>
+					<span class="fongColorEE">{{productDetailCtrl.product.StoreInfo.DePoint  | number:2 }}</span>
+				</div>
+				<div class="col">
+					<span class="nt">商家服务</span>
+					<span class="fongColorEE">{{productDetailCtrl.product.StoreInfo.SePoint  | number:2 }}</span>
+				</div>
+				<div class="col">
+					<span class="nt">商家配送</span>
+					<span class="fongColorEE">{{productDetailCtrl.product.StoreInfo.ShPoint | number:2 }}</span>
+				</div>
+			</div>
+		</div>
+		<div class="product-panel product-images">
+			<div class="row">
+				<div class="col">
+					<h4 style="border-bottom: solid 1px #f0f0f0;">商品详情</h4>
+					<div ng-bind-html="productDetailCtrl.product.ProductInfo.Description">
+					</div>
+				</div>
+			</div>
+		</div>
+  </ion-content>
+	<ion-footer-bar>
+		<div class="row">
+			<div class="col" style="text-align:center" ng-click="productDetailCtrl.bookMark()">
+				收藏
+			</div>
+			<div class="col" style="text-align:center" ng-click="productDetailCtrl.addToCart()">
+				加入购物车
+			</div>
+			<div class="col buy-now" ng-click="productDetailCtrl.buyNow()">
+				立即购买
+			</div>
+		</div>
+	</ion-footer-bar>
+</ion-view>

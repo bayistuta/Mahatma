@@ -14,7 +14,7 @@
 					}
 				})
 				.state('tab.shipAddressCreate', {
-					url: '/account/shipAddressCreate',
+					url: '/account/shipAddressCreate/:said',
 					views: {
 						'tab-account': {
 							templateUrl: 'js/account/shipAddress/shipAddress.create.html',

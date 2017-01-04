@@ -1,0 +1,60 @@
+<ion-view view-title="商品列表" hide-nav-bar="true" class="product-list">
+   <ion-header-bar align-title="left" >
+    <a href="#/tab/categories">
+        <i class="ion-chevron-left" style="color:#cfcfcf;margin: 0px 10px 0px 10px;font-size:22px;line-height:34px">
+        </i>
+    </a>
+    <div class="item-input-inset" style="width:90%">
+        <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="商品搜索" ng-model="productListCtrl.keyword">
+        </label>
+        <button class="button button-positive" ng-click="productListCtrl.searchProduct()" style="width:60px">
+          查询
+        </button>
+    </div>
+    </ion-header-bar>
+  <ion-content>
+    <div class="list-item list-search">
+      <div class="bar item-input-inset">
+          <button  class="button" 
+          ng-class="{'button-positive ion-arrow-up-c':productListCtrl.sortType === 0 && productListCtrl.sortDirection === 1,
+          'button-positive ion-arrow-down-c': productListCtrl.sortType === 0 && productListCtrl.sortDirection == 0}"
+          ng-click='productListCtrl.sort(0)'
+          >销量</button>
+          <button  class="button"
+           ng-class="{'button-positive ion-arrow-up-c':productListCtrl.sortType === 1 && productListCtrl.sortDirection === 1,
+          'button-positive ion-arrow-down-c': productListCtrl.sortType === 1 && productListCtrl.sortDirection == 0}"
+          ng-click='productListCtrl.sort(1)'
+          >价格</button>
+          <button  class="button"
+           ng-class="{'button-positive ion-arrow-up-c':productListCtrl.sortType === 2 && productListCtrl.sortDirection === 1,
+          'button-positive ion-arrow-down-c': productListCtrl.sortType === 2 && productListCtrl.sortDirection == 0}"
+          ng-click='productListCtrl.sort(2)'
+          >评价</button>
+          <button  class="button"
+           ng-class="{'button-positive ion-arrow-up-c':productListCtrl.sortType === 3 && productListCtrl.sortDirection === 1,
+          'button-positive ion-arrow-down-c': productListCtrl.sortType === 3 && productListCtrl.sortDirection == 0}"
+          ng-click='productListCtrl.sort(3)'
+          >人气</button>
+          <span></span>
+      </div>
+    </div>
+      <div ng-repeat="product in productListCtrl.products">
+        <dl>
+            <dd>
+                <a ng-click="productListCtrl.viewProduct(product.Pid)">
+                    	<img ng-src="{{product.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'">
+                    <p class="title">
+                        {{product.Name}}
+                    </p>
+                    <div class="clearfix extra">
+                        <span class="price pull-left">￥{{product.MarketPrice | number:2}}</span>
+                        <span class="amount pull-right">月销{{product.Salevolume}}笔</span>
+                    </div>
+                </a>
+            </dd>
+        </dl>
+    </div>
+  </ion-content>
+</ion-view>

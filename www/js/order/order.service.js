@@ -124,6 +124,56 @@
       return deferred.promise;
     };
 
+		var getOnlineOrders= function (options){
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'Order/OrderList';
+			$http.post(url, options
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err.data);
+			});
+			return deferred.promise;
+		};
+
+		var cancelOrder= function (oid){
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'Order/CancelOrder';
+			$http.post(url, {
+				Oid: oid
+			}
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err.data);
+			});
+			return deferred.promise;
+		};
+
+		var confirmReceipt = function (oid) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'Order/ConfirmReceipt?oid='+ oid;
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err.data);
+			});
+			return deferred.promise;
+		}
+
 		var init = function () {
 
 		};
@@ -136,7 +186,10 @@
 			denyOrder: denyOrder,
 			auditOrders: auditOrders,
 			createOrder: createOrder,
-			getOrderDetail: getOrderDetail
+			getOrderDetail: getOrderDetail,
+			getOnlineOrders: getOnlineOrders,
+			cancelOrder: cancelOrder,
+			confirmReceipt: confirmReceipt,
 		};
 	}
 

@@ -1,0 +1,47 @@
+<ion-view view-title="我的收藏" class="favorite-list">
+  <ion-content >
+    <div class="list-item list-search">
+      <div class="bar item-input-inset">
+          <button  class="button" 
+          ng-class="{'button-positive': favoriteCtrl.showType==0}"
+          ng-click='favoriteCtrl.changeType(0)'
+          >商品</button>
+          <button  class="button"
+           ng-class="{'button-positive': favoriteCtrl.showType==1}"
+          ng-click='favoriteCtrl.changeType(1)'
+          >店铺</button>
+          <span></span>
+      </div>
+		</div>
+    <div ng-if="favoriteCtrl.showType===0">
+      <div class="list" ng-if="favoriteCtrl.products.length > 0">
+        <a class="item item-thumbnail-left" ng-repeat="product in favoriteCtrl.products">
+          <img ng-src="{{product.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
+          <h2>{{product.ProductName}}</h2>
+          <i class="ion-close-round" ng-click="favoriteCtrl.removeRecord(product.Pid);$event.stopPropagation();"></i>
+        </a>
+      </div>
+      <div ng-if="favoriteCtrl.products.length == 0&& favoriteCtrl.dataLoaded"  style="text-align:center; padding:30px 0">
+        当前条件下没有数据.......
+      </div>
+    </div>
+    <div ng-if="favoriteCtrl.showType===1">
+      <div class="list" ng-if="favoriteCtrl.stores.length > 0">
+        <a class="item item-thumbnail-left" ng-repeat="store in favoriteCtrl.stores">
+          <img ng-src="{{store.Logo}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
+          <h2>{{store.StoreName}}</h2>
+          <i class="ion-close-round" ng-click="favoriteCtrl.removeRecord(store.StoreId);$event.stopPropagation();"></i>
+        </a>
+      </div>
+      <div ng-if="favoriteCtrl.stores.length == 0&& favoriteCtrl.dataLoaded"  style="text-align:center; padding:30px 0">
+        当前条件下没有数据.......
+      </div>
+    </div>
+     <ion-infinite-scroll
+      immediate-check="false"
+      on-infinite="favoriteCtrl.loadMoreData()"
+      ng-if="!favoriteCtrl.noMoreData"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

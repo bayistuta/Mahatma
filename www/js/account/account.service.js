@@ -274,11 +274,76 @@
 			return deferred.promise;
 		}
 
+		function editShipAddress(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/EditShipAddress';
+			$http.post(url,
+			options
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function setDefaultShipAddress(said) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/SetDefaultShipAddress?said='+said;
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function removeShipAddress(said) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/DelShipAddress?said='+said;
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
 		function getFavoriteProductList(options) {
 			var deferred = $q.defer();
 			var url = applicationConfig.api_url + '/' + 'User/FavoriteProductList';
-			$http.post(url
+			$http.post(url, options
 			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function addFavoriteProduct(pid) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/AddProductToFavorite?pid='+pid;
+			$http.post(url)
+			.then(function (response) {
 				if (response.data.Result) {
 					deferred.resolve(response);
 				} else {
@@ -293,11 +358,39 @@
 		function getFavoriteStoreList(options) {
 			var deferred = $q.defer();
 			var url = applicationConfig.api_url + '/' + 'User/FavoriteStoreList';
-			$http.post(url,{
-				StoreName: '',
-				PageIndex: 0,
-				PageSize: 10,
-			}
+			$http.post(url,options
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function removeFavoriteStore(storeId) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/DelFavoriteStore?storeId='+storeId;
+			$http.post(url
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function removeFavoriteProduct(productId) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/DelFavoriteProduct?pid='+productId;
+			$http.post(url
 			).then(function (response) {
 				if (response.data.Result) {
 					deferred.resolve(response);
@@ -314,6 +407,21 @@
 			var deferred = $q.defer();
 			var url = applicationConfig.api_url + '/' + 'User/GetRechargeInfo';
 			$http.post(url).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		function getReChargeList(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'User/MyRechargeList';
+			$http.post(url, options).then(function (response) {
 				if (response.data.Result) {
 					deferred.resolve(response);
 				} else {
@@ -348,7 +456,14 @@
 			getShipAddress: getShipAddress,
 			addShipAddress: addShipAddress,
 			getFavoriteProductList: getFavoriteProductList,
-			getFavoriteStoreList: getFavoriteStoreList
+			getFavoriteStoreList: getFavoriteStoreList,
+			removeFavoriteStore: removeFavoriteStore,
+			removeFavoriteProduct: removeFavoriteProduct,
+			setDefaultShipAddress: setDefaultShipAddress,
+			removeShipAddress: removeShipAddress,
+			editShipAddress: editShipAddress,
+			addFavoriteProduct: addFavoriteProduct,
+			getReChargeList:getReChargeList,
 		};
 	}
 

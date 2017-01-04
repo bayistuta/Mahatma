@@ -4,14 +4,15 @@
 	angular.module('mahatma')
 		.config(function ($stateProvider) {
 			$stateProvider
-				.state('tab.favorite', {
-					url: '/account/favorite',
+				.state('tab.charge', {
+					url: '/account/charge',
 					views: {
 						'tab-account': {
-							templateUrl: 'js/account/favorite/favorite.list.html',
-							controller: 'FavoriteCtrl as favoriteCtrl'
+							templateUrl: 'js/account/charge/charge.html',
+							controller: 'ChargeCtrl as chargeCtrl'
 						}
 					}
+
 				})
 		});
 })();

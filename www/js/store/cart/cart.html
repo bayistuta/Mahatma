@@ -1,0 +1,49 @@
+<ion-view view-title="购物车" class="cart">
+  <ion-content>
+		<div class="list">
+        <div class="item item-thumbnail-left" ng-repeat="product in cartCtrl.cart.StoreCartList[0].CartProductList track by $index">
+					<span class="option">
+						<i class="iconfont" 
+						ng-class="{true:'icon-icon-test16', false:'icon-icon-test15'}[product.OrderProductInfo.isSelected==true]"
+						ng-click="cartCtrl.selectOne(product)"
+						></i>
+					</span>
+					<img ng-src="{{product.OrderProductInfo.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
+          <h2>{{product.OrderProductInfo.Name}}</h2>
+					<p class="clearfix">
+						<span class="pull-left price">
+							¥{{product.OrderProductInfo.DiscountPrice}}
+						</span>
+						<span class="pull-right">
+							<em>x{{product.OrderProductInfo.BuyCount}}</em>
+						</span>
+							</p>
+				</div>
+      </div>
+	</ion-content>
+	<ion-footer-bar>
+		<div class="row">
+			<div class="col"  ng-click="cartCtrl.selectAll()">
+				<span class="option">
+						<i class="iconfont" 
+						ng-class="{true:'icon-icon-test16', false:'icon-icon-test15'}[cartCtrl.selectedAll]"
+						></i>
+					</span>
+					<span style="margin-left: 40px;">全选</span>
+			</div>
+			<div class="col" style="text-align:right" >
+				<span style="color: #999;">
+					合计：
+				</span>
+				<span class="price">
+					¥{{cartCtrl.amount | number:2}}
+				</span>
+			</div>
+			<div class="col" style="text-align:right">
+				<button class="button button-positive" style="margin:3px;" ng-click="cartCtrl.confirmOrder()">
+					&nbsp;&nbsp;&nbsp;&nbsp;结算&nbsp;&nbsp;&nbsp;&nbsp;
+				</button>
+			</div>
+		</div>
+	</ion-footer-bar>
+</ion-view>

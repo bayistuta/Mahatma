@@ -10,91 +10,127 @@
 			</div>
 		</div>
     <div class="split"></div>
+    <div class="account-panel money" style="box-shadow:none">
+      <h4 class="clearfix" style="padding-bottom:0px">
+        <span>我的订单</span>
+        <a class="button pull-right ion-chevron-right icon-right button-small button-clear button-stable" href="#/tab/account/myOrders/0">所有订单</a>
+      </h4>
+      <div class="row order-row">
+        <div class="col">
+          <a href="#/tab/account/myOrders/30">
+            <span>
+              <em class="iconfont icon-icon-test8"></em>
+            </span>
+            <br/>
+            待付款
+          </a>
+        </div>
+        <div class="col">
+          <a href="#/tab/account/myOrders/90">
+            <span>
+              <em class="iconfont icon-icon-test13"></em>
+            </span>
+            <br/>
+            待发货
+          </a>
+        </div>
+        <div class="col">
+          <a href="#/tab/account/myOrders/110">
+            <span>
+              <em class="iconfont icon-icon-test11"></em>
+            </span>
+            <br/>
+            待收货
+          </a>
+        </div>
+        <div class="col">
+          <span>
+            <em class="iconfont icon-icon-test9"></em>
+          </span>
+          <br/>
+          待评价
+        </div>
+      </div>
+    </div>
+    <div class="split"></div>
     <div class="account-panel money">
-			<div class="row">
-				<div class="col money-1">
-          <div>
-            <img src="img/icon-left.png" />
-            <span>余额</span>
-            <span>{{accountCtrl.balance}}</span>
+			<div class="row" style="margin-bottom:4px">
+				<div class="col" style="border-right:none">
+          <div class="s-item">
+            <i class="iconfont icon-icon-test17"></i>
+            <span>余额</span><br><strong class="fongColorEE">{{accountCtrl.balance}}</strong>
           </div>
         </div>
-				<div class="col money-1">
-          <div>
-            <img src="img/icon-red.png" />
-            <span>红包</span>
-            <span>{{accountCtrl.red}}</span>
+        <div class="col" style="text-align:right">
+          <a class="button button-small button-outline button-positive" style="margin:15px;" href="">
+            &nbsp;&nbsp;&nbsp;&nbsp;充值&nbsp;&nbsp;&nbsp;&nbsp;
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="s-item">
+            <i class="iconfont icon-icon-test19" style="background: #ee4d52;"></i>
+            <span>红包</span><br><strong class="fongColorEE">{{accountCtrl.red}}</strong>
           </div>
         </div>
-        <div class="col money-1 last">
-          <div>
-            <img src="img/icon-dai.png" />
-            <div>
-              <span>货款</span>
-              <span>{{accountCtrl.goodsmoney}}</span>
-            </div>
+        <div class="col">
+          <div class="s-item">
+            <i class="iconfont icon-icon-test20" style="background: #40d792;"></i>
+            <span>货款</span><br><strong >{{accountCtrl.goodsmoney}}</strong>
           </div>
         </div>
 			</div>
 			<div class="row" style="margin-top:0px;">
-				<div class="col money-2">
-           <div>
-            <img src="img/icon-ye.png"  />
-            <div class="money-text">
-              <span>业绩</span>
-              <span>{{accountCtrl.performance}}</span>
-            </div>
+         <div class="col">
+          <div class="s-item">
+            <i class="iconfont icon-icon-test18" style="background: #2b9df5;"></i>
+            <span>业绩</span><br><strong >{{accountCtrl.performance}}</strong>
           </div>
         </div>
-        <div class="col money-2 last">
-           <div>
-              <img src="img/icon-use.png" />
-              <div class="money-text">
-                <span>累计消费</span>
-                <span>{{accountCtrl.totalAmount}}</span>
-              </div>
-            </div>
+        <div class="col">
+          <div class="s-item">
+            <i class="iconfont icon-icon-test21" style="background: #f4547a;"></i>
+            <span>累计消费</span><br><strong >{{accountCtrl.totalAmount}}</strong>
+          </div>
         </div>
 			</div>
 		</div>
     <div class="split"></div>
     <div class="account-panel money" style="box-shadow:none">
-      <h4>
-        设置
-      </h4>
-      <div class="row" style="margin-top:-10px;">
-				<div class="col money-1">
-          <div>
-            <a href="#/tab/account/changePassword">
-              <img src="img/change-password.png" />   
-              <span>修改密码</span>
-            </a>
-          </div>
-        </div>
-				<div class="col money-1">
-          <div>
-            <img src="img/account-setting.png" />
-            <span>收货地址</span>
-          </div>
-        </div>
-			</div>
-      <div class="row" style="margin-top:-10px;">
-				<div class="col money-1">
-          <div>
-            <a href="#/tab/account/favoriteProduct">
-              <img src="img/account-setting.png" />   
-              <span>商品收藏</span>
-            </a>
-          </div>
-        </div>
-				<div class="col money-1">
-          <div>
-            <a href="#/tab/account/favoriteStore">
-              <img src="img/account-setting.png" />
-              <span>店铺收藏</span>
-            </a>
-          </div>
-        </div>
+      <ul class="list">
+          <li class="item item-button-right" ng-click="accountCtrl.goTo('/tab/account/changePassword')">
+            修改密码
+            <button class="button button-stable button-clear">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </li>
+          <li class="item item-button-right" ng-click="accountCtrl.goTo('/tab/account/shipAddressList')">
+            收货地址
+            <button class="button button-stable button-clear">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </li>
+          <li class="item item-button-right" ng-click="accountCtrl.goTo('/tab/account/favorite')">
+           我的收藏
+            <button class="button button-stable button-clear">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </li>
+          <li class="item item-button-right" ng-click="accountCtrl.goTo('/tab/members')">
+           我的会员
+            <button class="button button-stable button-clear">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </li>
+          <li class="item item-button-right" ng-click="accountCtrl.goTo('/tab/account/charge')">
+            充值记录
+            <button class="button button-stable button-clear">
+              <i class="icon ion-chevron-right"></i>
+            </button>
+          </li>
+      </ul>
+      
 			</div>
     </div>
 	</ion-content>
