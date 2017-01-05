@@ -5,10 +5,10 @@
 		.controller('CartCtrl', CartCtrl);
 
 	CartCtrl.$inject = ['$scope', 'Utils', 'CommonService', 'StoreService', 'AccountService',
-    '$state', 'ionicToast'];
+    '$state', 'ionicToast', 'cart'];
 
 	function CartCtrl($scope, Utils, CommonService, StoreService,
-        AccountService, $state, ionicToast) {
+        AccountService, $state, ionicToast, cart) {
         var vm = this;
 				vm.cart = {};
 				vm.selectedAll = false;
@@ -21,13 +21,7 @@
         vm.init();
 
         function init() {
-					loadCart();
-				}
-
-				function loadCart() {
-					StoreService.cartList().then(function(response) {
-						vm.cart = response.data.Data;
-					});
+					vm.cart = cart.data.Data;
 				}
 
 				function selectAll() {
@@ -55,7 +49,16 @@
 
 				function confirmOrder() {
 					if (vm.amount > 0) {
-						
+						var keys = '';
+						vm.cart.StoreCartList[0].CartProductList.forEach(function(product){
+							if (product.OrderProductInfo.isSelected) {
+								keys +=  '0_' + product.OrderProductInfo.Pid + ',';
+							}
+						});
+
+						if (keys.length > 0) {
+							Utils.toLocation('/tab/confirmOrder/'+ keys.substring(0, keys.length -1), true);
+						}
 					}
 				}
 	}

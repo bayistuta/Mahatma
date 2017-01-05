@@ -10,7 +10,7 @@
         <img ng-src="{{adv.Image}}" >
       </ion-slide-page>
     </ion-slides>
-    <div class="row  border-row">
+    <div class="row menu-row">
       <div class="col col-25" ng-if="dashCtrl.isSeller()">
         <a class="menu-item" href="#/tab/orders/create">
           <img src="img/icon_order.png" />
@@ -60,7 +60,7 @@
         </a>
       </div>
     </div>
-    <div class="row  border-row  news-row">
+    <div class="row news-row">
       <div class="col">
         <div class="topnews">
           <img src="img/top_news.png" />
@@ -77,22 +77,13 @@
         </div>
       </div>
     </div>
-    <div id="intro-area">
-      <div>
-        <a href="http://www.dsjtchina.com/544.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:50%;margin:0px;border-right:solid 1px #cfcfcf;">
-          <img src="img/intro-1.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2496.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:50%;margin:0px;">
-          <img src="img/intro-2.jpg" style="width:100%;margin:0px;">
-        </a>
+    <div class="row content-row">
+      <div class="col border-right" ng-click="dashCtrl.goTo(i1)">
+         <img src="img/intro-1.jpg">
       </div>
-      <div style="float:left;margin-top:-3px">
-        <a href="http://www.dsjtchina.com/2169.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:50%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf">
-          <img src="img/intro-3.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/250.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:50%;margin:0px;border-top:solid 1px #cfcfcf">
-          <img src="img/intro-4.jpg" style="width:100%;margin:0px;">
-        </a>
+      <div class="col">
+         <img src="img/intro-3.jpg" class="border-bottom" ng-click="dashCtrl.goTo(i2)">
+         <img src="img/intro-3.jpg" ng-click="dashCtrl.goTo(i3)">
       </div>
     </div>
     <div id="mother-area">

@@ -1,6 +1,6 @@
-<ion-view view-title="收获地址" class="address-list">
+<ion-view view-title="收货地址" class="address-list">
    <ion-nav-buttons side="right">
-      <a class="a-bd" href="#/tab/account/shipAddressCreate">
+      <a class="a-bd" href="#/tab/account/shipAddressCreate/0">
         <span class="txt">新增</span>
         <span class="icon"></span>
       </a>
@@ -29,11 +29,12 @@
           <div class="col" style="text-align:right">
             <a href="#/tab/account/shipAddressCreate/{{address.SaId}}" class="btnIco">
               <em class="iconfont icon-icon-test41"></em>
-              编辑
+              <span>编辑</span>
             </a>
             <span class="btnIco"  ng-click="shipAddressListCtrl.removeShipAddress(address.SaId)">
               <em class="iconfont icon-icon-test40">
-                </em>删除
+                </em>
+                <span>删除</span>
             </span>
           </div>
         </div>

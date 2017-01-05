@@ -16,7 +16,11 @@
 						requireLogin: false,
 					},
 					resolve: {
-						advertList: function($q, $timeout, CommonService){
+						advertList: function($q, $timeout, CommonService, Utils){
+							var adverts = Utils.getObjectFromSessionStorage('advert');
+							if (adverts){
+								return adverts;
+							}
 							return CommonService.getAdvertList();
 						}
 					}

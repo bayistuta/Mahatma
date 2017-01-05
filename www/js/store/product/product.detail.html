@@ -1,8 +1,8 @@
-<ion-view view-title="商品详情" hide-nav-bar="true" class="product-detail">
+<ion-view view-title="商品详情"  class="product-detail">
   <ion-content>
 		 <ion-slides options="productDetailCtrl.swiperOptions" slider="data.slider" >
       <ion-slide-page ng-repeat="img in productDetailCtrl.product.ProductImageList track by $index">
-        <img ng-src="{{img.ShowImg}}" onerror="this.src='img/banner.jpg';this.style.background='#0086b3'">
+        <img ng-src="{{img.ShowImg}}" onerror="">
       </ion-slide-page>
     </ion-slides>
 		<div class="product-panel product-basic">
@@ -50,7 +50,7 @@
 			<div class="row">
 				<div class="col">
 					<h4 style="border-bottom: solid 1px #f0f0f0;">商品详情</h4>
-					<div ng-bind-html="productDetailCtrl.product.ProductInfo.Description">
+					<div ng-bind-html="productDetailCtrl.product.ProductInfo.Description" class="p-detail">
 					</div>
 				</div>
 			</div>

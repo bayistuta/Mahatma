@@ -5,10 +5,10 @@
 		.controller('DashCtrl', DashCtrl);
 
 	DashCtrl.$inject = ['$scope', 'Utils', 'CommonService', 'Constants', '$ionicPopup', '$cordovaContacts',
-		'advertList'];
+		'advertList', 'ionicToast'];
 
 	function DashCtrl($scope, Utils, CommonService, Constants, $ionicPopup, $cordovaContacts,
-		advertList) {
+		advertList, ionicToast) {
 		var vm = this;
 		vm.account = null;
 		vm.notify = notify;
@@ -23,7 +23,14 @@
 			vm.swiperOptions = {
 				autoplay: 3000,
 			};
-			vm.advertList = advertList.data.Data.AdvertList;
+			var adverts = Utils.getObjectFromSessionStorage('advert');
+			if (!adverts) {
+				vm.advertList = advertList.data.Data.AdvertList;
+				Utils.setObjectInSessionStorage('advert', vm.advertList);
+			} else {
+				vm.advertList = adverts;
+			}
+			
 			vm.checkAppVersion();
 			//vm.getAdvertList();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);

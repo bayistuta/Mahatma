@@ -51,7 +51,7 @@
 							vm.address = address[0].Address;
 							vm.alias = address[0].Alias;
 							vm.selectedProvinceId = address[0].ProvinceId;
-							vm.selectedCountryId = address[0].CountryId;
+							vm.selectedCountryId = address[0].CountyId;
 							vm.selectedTownId = address[0].TownId;
 							vm.selectedCityId = address[0].CityId;
 							if (vm.selectedProvinceId > 0) {

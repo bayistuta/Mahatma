@@ -68,7 +68,6 @@
       var url = applicationConfig.api_url + '/' + 'Advert/AdvertList';
       $http.post(url,
 			{
-				AdPosId: 1,
 				PageIndex: 1,
 				PageSize: 10,
 			}).then(function (response) {
