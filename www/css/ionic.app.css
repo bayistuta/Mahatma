@@ -10555,7 +10555,7 @@ a.button {
 .home-page .ex-row .col {
   padding: 0px;
   height: 245px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .home-page .ex-row .col .p-container{
@@ -10564,8 +10564,7 @@ a.button {
   padding: 5px;
 }
 .home-page .ex-row .col .p-container img {
-  max-width:90%;
-  height: 174px;
+  max-width:100%;
   display:block;
   margin:auto;
 }
