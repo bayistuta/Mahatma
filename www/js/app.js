@@ -60,8 +60,8 @@ angular.module('mahatma', ['ionic', 'ionic-toast', 'ngCordova'])
 var applicationConfig = {
   //token_url: 'http://dsjtchina.com:8881/token',
   //api_url: 'http://dsjtchina.com:8881/api',
-  version: '1.0.4',
+  version: '1.0.5',
   token_url: 'http://test001.dsjtchina.com:9991/token',
-  //api_url: 'http://dsjtchina.com:9991/api',
-  api_url: 'http://localhost:8100/api',
+  api_url: 'http://test001.dsjtchina.com:9991/api',
+  //api_url: 'http://localhost:8100/api',
 };

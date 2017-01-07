@@ -135,7 +135,7 @@
         <div class="col col-50">
           <div class="p-container clearfix">
             <img ng-src="{{dashCtrl.excellentData[0].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[0].ExtField1)">
-            <!--<p class="p-title">
+            <p class="p-title">
               {{dashCtrl.e1Data.Name}}
             </p>
             <p>
@@ -145,23 +145,55 @@
               <span class="p-count pull-right">
                 月销{{dashCtrl.e1Data.SaleCount}}
               </span>
-            </p>-->
+            </p>
           </div>
         </div>
         <div class="col col-50">
          <div class="p-container clearfix">
             <img ng-src="{{dashCtrl.excellentData[1].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[1].ExtField1)">
-
+            <p class="p-title">
+              {{dashCtrl.e2Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e2Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e2Data.SaleCount}}
+              </span>
+            </p>
           </div>
         </div>
         <div class="col col-50">
          <div class="p-container clearfix">
             <img ng-src="{{dashCtrl.excellentData[2].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[2].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e3Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e3Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e3Data.SaleCount}}
+              </span>
+            </p>
           </div>
         </div>
         <div class="col col-50">
          <div class="p-container clearfix">
             <img ng-src="{{dashCtrl.excellentData[3].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[3].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e4Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e4Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e4Data.SaleCount}}
+              </span>
+            </p>
           </div>
         </div>
     </div>
