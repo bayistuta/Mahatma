@@ -12,12 +12,14 @@
         var vm = this;
         vm.product = '';
         vm.accountType = 0;
+        vm.keyword = '';
 
         vm.bookMark = bookMark;
         vm.buyNow = buyNow;
         vm.addToCart = addToCart;
         vm.init = init;
         vm.isLogin = isLogin;
+        vm.searchProduct = searchProduct;
         
         vm.init();
 
@@ -54,6 +56,11 @@
         function isLogin() {
 			return vm.accountType !== 0 ? 'ng-show' : 'ng-hide';;
 		}
+
+        function searchProduct() {
+            var target = '/tab/search/' + vm.cateId + '/' + vm.keyword;
+            Utils.toLocation(target, false);
+        }
         
 	}
 })();
