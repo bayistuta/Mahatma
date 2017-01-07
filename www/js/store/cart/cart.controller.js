@@ -57,7 +57,7 @@
 						});
 
 						if (keys.length > 0) {
-							Utils.toLocation('/tab/confirmOrder/'+ keys.substring(0, keys.length -1), true);
+							//Utils.toLocation('/tab/confirmOrder/'+ keys.substring(0, keys.length -1), true);
 						}
 					}
 				}
