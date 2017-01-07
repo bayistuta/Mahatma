@@ -37,6 +37,7 @@
 			return obj;
 		}
 
+
 		return {
 			toLocation: toLocation,
 			setObjectInSessionStorage: setObjectInSessionStorage,

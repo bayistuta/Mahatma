@@ -69,7 +69,7 @@
       $http.post(url,
 			{
 				PageIndex: 1,
-				PageSize: 10,
+				PageSize: 100,
 			}).then(function (response) {
         if (response.data.Result) {
 					deferred.resolve(response);

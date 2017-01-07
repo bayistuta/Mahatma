@@ -6,8 +6,8 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-slides options="dashCtrl.swiperOptions" slider="data.slider">
-      <ion-slide-page ng-repeat="adv in dashCtrl.advertList track by $index">
-        <img ng-src="{{adv.Image}}" >
+      <ion-slide-page ng-repeat="adv in dashCtrl.bannerData track by $index">
+        <img ng-src="{{adv.Image}}" ng-click="dashCtrl.goTo(adv.ExtField1)" >
       </ion-slide-page>
     </ion-slides>
     <div class="row menu-row">
@@ -77,241 +77,126 @@
         </div>
       </div>
     </div>
-    <div class="row content-row">
-      <div class="col border-right" ng-click="dashCtrl.goTo(i1)">
-         <img src="img/intro-1.jpg">
+    <div class="row intro-row">
+      <div class="col border-right p1" ng-click="dashCtrl.goTo(dashCtrl.introData[0].ExtField1)">
+         <img ng-src="{{dashCtrl.introData[0].Image}}" ng-click="dashCtrl.goTo(dashCtrl.introData[0].ExtField1)">
       </div>
-      <div class="col">
-         <img src="img/intro-3.jpg" class="border-bottom" ng-click="dashCtrl.goTo(i2)">
-         <img src="img/intro-3.jpg" ng-click="dashCtrl.goTo(i3)">
+      <div class="col p1">
+         <div class="row border-bottom">
+           <div class="col p2">
+              <img ng-src="{{dashCtrl.introData[1].Image}}" ng-click="dashCtrl.goTo(dashCtrl.introData[1].ExtField1)">
+           </div>
+         </div>
+         <div class="row">
+           <div class="col p2">
+              <img ng-src="{{dashCtrl.introData[2].Image}}" ng-click="dashCtrl.goTo(dashCtrl.introData[2].ExtField1)">
+           </div>
+         </div>
       </div>
     </div>
-    <div id="mother-area">
-      <div>
-        <img src="img/tony.jpg" style="width:100%;float:left">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/990.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:27.15%;margin:0px;">
-          <img src="img/mother-1.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/990.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:72.85%;margin:0px;">
-          <img src="img/mother-2.jpg" style="width:100%;margin:0px;">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-5px;">
-        <a href="http://www.dsjtchina.com/902.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:63.822%;margin:0px;border-right:solid 1px #cfcfcf;border-bottom:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/mother-3.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/1027.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:36.178%;margin:0px;border-bottom:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/mother-4.jpg" style="width:100%;margin:0px;">
-        </a>
-      </div>
 
-      <div>
-        <a href="http://www.dsjtchina.com/232.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:25%;margin:0px;border-right:solid 1px #cfcfcf;">
-          <img src="img/mother-5.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2357.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:25%;margin:0px;border-right:solid 1px #cfcfcf;">
-          <img src="img/mother-6.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/1820.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:25%;margin:0px;border-right:solid 1px #cfcfcf;">
-          <img src="img/mother-7.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/940.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:25%;margin:0px;">
-          <img src="img/mother-8.jpg" style="width:100%;margin:0px;">
-        </a>
+    <div ng-repeat = "level in dashCtrl.fData">
+      <div class="row banner border-bottom">
+          <div class="col">
+            <img src="img/t{{$index+1}}.png">
+          </div>      
       </div>
-    </div>
-    <div id="daily-area">
-      <div>
-        <img src="img/dailyhome.jpg" style="width:100%;float:left">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/1296.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:27.03%;margin:0px;">
-          <img src="img/dailyhome1.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/1296.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:72.97%;margin:0px;">
-          <img src="img/dailyhome2.jpg" style="width:100%;margin:0px;">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-5px;">
-        <a href="http://www.dsjtchina.com/1619.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:33.3%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome3.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2371.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:33.3%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome4.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2376.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:33.3%;margin:0px;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome5.jpg" style="width:100%;margin:0px;">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-3px;">
-        <a href="http://www.dsjtchina.com/651.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:23.27%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome6.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2031.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:23.27%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome7.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2021.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:23.27%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome8.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2070.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:30.16%;margin:0px;border-top:solid 1px #cfcfcf;">
-          <img src="img/dailyhome9.jpg" style="width:100%;margin:0px;">
-        </a>
-      </div>
-    </div>
-    <div id="face-area" style="float:left;margin-top:-6px;">
-      <div>
-        <img src="img/face.jpg" style="width:100%;float:left">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/list/115.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:26.7%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/face1.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/432.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:38.94%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid
-          1px #cfcfcf; ">
-          <img src="img/face2.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/list/163.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.29%;margin:0px;border-top:solid 1px #cfcfcf;">
-          <img src="img/face3.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-8px; ">
-        <a href="http://www.dsjtchina.com/581.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.45%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/face4.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/594.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.17%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/face5.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/1128.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:31.38%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/face6.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-    </div>
-    <div class="food-area " style="float:left;margin-top:-3px; ">
-      <div>
-        <img src="img/food.jpg " style="width:100%;float:left ">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/list/57.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:26.7%;margin:0px;border-right:solid 1px
-          #cfcfcf;border-top:solid 1px #cfcfcf; ">
-          <img src="img/food1.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/366.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:38.94%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf; ">
-          <img src="img/food2.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/291.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.29%;margin:0px;border-top:solid 1px #cfcfcf;
-          ">
-          <img src="img/food3.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-8px;">
-        <a href="http://www.dsjtchina.com/373.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:30.78%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid 1px #cfcfcf;border-bottom:solid
-          1px #cfcfcf; ">
-          <img src="img/food4.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/2392.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.56%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid 1px #cfcfcf;border-bottom:solid
-          1px #cfcfcf; ">
-          <img src="img/food5.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/2394.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.65%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid 1px
-          #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/food6.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-    </div>
-    <div class="cloth-area " style="float:left;margin-top:-18px;">
-      <div>
-        <img src="img/cloth.jpg " style="width:100%;float:left ">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/list/192.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:26.7%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf;">
-          <img src="img/cloth1.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/1733.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:38.94%;margin:0px;border-right:solid 1px
-          #cfcfcf;border-top:solid 1px #cfcfcf; ">
-          <img src="img/cloth2.jpg" style="width:100%;margin:0px;">
-        </a>
-        <a href="http://www.dsjtchina.com/2043.html" onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.29%;margin:0px;border-top:solid 1px #cfcfcf;">
-          <img src="img/cloth3.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-      <div style="float:left;margin-top:-8px; ">
-        <a href="http://www.dsjtchina.com/2060.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.65%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/cloth4.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/2114.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.56%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/cloth5.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/1860.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:30.78%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-          <img src="img/cloth6.jpg " style="width:100%;margin:0px; ">
-        </a>
-      </div>
-    </div>
-    <div class="elect-ara " style="float:left;margin-top:-4px; ">
-      <div>
-        <img src="img/elect-adv.jpg " style="width:100%;float:left ">
-      </div>
-      <div>
-        <img src="img/elect.jpg " style="width:100%;float:left ">
-      </div>
-      <div>
-        <a href="http://www.dsjtchina.com/list/230.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:26.64%;margin:0px;border-right:solid
-          1px #cfcfcf;border-top:solid 1px #cfcfcf; ">
-          <img src="img/elect1.jpg " style="width:100%;margin:0px; ">
-        </a>
-        <a href="http://www.dsjtchina.com/909.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:38.81%;margin:0px;border-right:solid 1px #cfcfcf;border-top:solid 1px #cfcfcf; ">
-            <img src="img/elect2.jpg " style="width:100%;margin:0px; ">
-          </a>
-          <a href="http://www.dsjtchina.com/2803.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.55%;margin:0px;border-top:solid 1px
-          #cfcfcf; ">
-            <img src="img/elect3.jpg " style="width:100%;margin:0px; ">
-          </a>
+      <div class="row content-row">
+        <div class="col col-50 border-right border-bottom p1">
+          <img ng-src="{{level.data[0].Image}}" ng-click="dashCtrl.goTo(level.data[0].ExtField1)">
         </div>
-      <div style="float:left;margin-top:-8px; ">
-          <a href="http://www.dsjtchina.com/1044.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.65%;margin:0px;border-top:solid 1px
-          #cfcfcf;border-right:solid 1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-            <img src="img/elect4.jpg " style="width:100%;margin:0px; ">
-          </a>
-          <a href="http://www.dsjtchina.com/706.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:34.56%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-            <img src="img/elect5.jpg " style="width:100%;margin:0px; ">
-          </a>
-          <a href="http://www.dsjtchina.com/493.html " onclick="window.open(this.href, '_system','location=yes');" style="float:left;width:30.78%;margin:0px;border-top:solid 1px #cfcfcf;border-right:solid
-          1px #cfcfcf;border-bottom:solid 1px #cfcfcf; ">
-            <img src="img/elect6.jpg " style="width:100%;margin:0px; ">
-          </a>
+        <div class="col col-25 border-right border-bottom p1">
+          <img ng-src="{{level.data[1].Image}}" ng-click="dashCtrl.goTo(level.data[1].ExtField1)">
+        </div>
+        <div class="col col-25 border-bottom  p1">
+          <img ng-src="{{level.data[2].Image}}" ng-click="dashCtrl.goTo(level.data[2].ExtField1)">
+        </div>
+        <div class="col col-25 border-right border-bottom  p1">
+          <img ng-src="{{level.data[3].Image}}" ng-click="dashCtrl.goTo(level.data[3].ExtField1)">
+        </div>
+        <div class="col col-25 border-right border-bottom  p1">
+          <img ng-src="{{level.data[4].Image}}" ng-click="dashCtrl.goTo(level.data[4].ExtField1)">
+        </div>
+        <div class="col col-25 border-right border-bottom  p1">
+          <img ng-src="{{level.data[5].Image}}" ng-click="dashCtrl.goTo(level.data[5].ExtField1)">
+        </div>
+        <div class="col col-25 border-bottom  p1">
+          <img ng-src="{{level.data[6].Image}}" ng-click="dashCtrl.goTo(level.data[6].ExtField1)">
         </div>
       </div>
     </div>
-    <div class="spec-ara">
-      <div style="
-          width: 100%;
-          height: 44px;
-          float: left;
-          background: #fff;
-          margin-top: -4px;
-          border-top: solid 1px #cfcfcf;
-      ">
-        <img src="img/intro-spec.png " style="width:202px;display:block;margin:auto;">
-      </div>
-      <div>
-        <a href="" style="float:left;width:7.5%;margin:0px;border-top:solid 1px #cfcfcf;" >
-          <img src="img/found.png " style="width:100%;margin:0px; ">
-        </a>
-        <a href="" style="float:left;width:92.5%;margin:0px;border-top:solid 1px #cfcfcf;">
-          <img src="img/found1.png" style="width:100%;margin:0px;">
-        </a>
-      </div>
+
+    <div class="row banner" style="background:none">
+        <div class="col">
+          <img src="img/t7.png">
+        </div>      
     </div>
-    <div style="margin-bottom:30px;float:left">
-        <img src="img/bottom.png " style="width:100%;float:left ">
+    <div class="row ex-row">
+        <div class="col col-50">
+          <div class="p-container clearfix">
+            <img ng-src="{{dashCtrl.excellentData[0].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[0].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e1Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e1Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e1Data.SaleCount}}
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+         <div class="p-container clearfix">
+            <img ng-src="{{dashCtrl.excellentData[1].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[1].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e2Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e2Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e2Data.SaleCount}}
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+         <div class="p-container clearfix">
+            <img ng-src="{{dashCtrl.excellentData[2].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[2].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e3Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e3Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e3Data.SaleCount}}
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="col col-50">
+         <div class="p-container clearfix">
+            <img ng-src="{{dashCtrl.excellentData[3].Image}}" ng-click="dashCtrl.goTo(dashCtrl.excellentData[3].ExtField1)">
+            <p class="p-title">
+              {{dashCtrl.e4Data.Name}}
+            </p>
+            <p>
+              <span class="p-price pull-left">
+                ¥{{dashCtrl.e4Data.ShopPrice | number:2}}
+              </span>
+              <span class="p-count pull-right">
+                月销{{dashCtrl.e4Data.SaleCount}}
+              </span>
+            </p>
+          </div>
+        </div>
     </div>
+    
   </ion-content>
 </ion-view>

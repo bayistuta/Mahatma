@@ -5,10 +5,10 @@
 		.controller('DashCtrl', DashCtrl);
 
 	DashCtrl.$inject = ['$scope', 'Utils', 'CommonService', 'Constants', '$ionicPopup', '$cordovaContacts',
-		'advertList', 'ionicToast'];
+		'advertList', 'ionicToast', 'StoreService'];
 
 	function DashCtrl($scope, Utils, CommonService, Constants, $ionicPopup, $cordovaContacts,
-		advertList, ionicToast) {
+		advertList, ionicToast, StoreService) {
 		var vm = this;
 		vm.account = null;
 		vm.notify = notify;
@@ -17,6 +17,17 @@
 		vm.checkAppVersion = checkAppVersion;
 		vm.signOut = signOut;
 		vm.advertList = [];
+		vm.getSectionData = getSectionData;
+		vm.goTo = goTo;
+
+		vm.bannerData = [];
+		vm.excellentData = [];
+		vm.e1Data = {};
+		vm.e2Data = {};
+		vm.e3Data = {};
+		vm.e4Data = {};
+		vm.introData = [];
+		vm.fData = [];
 		init();
 
 		function init() {
@@ -30,7 +41,28 @@
 			} else {
 				vm.advertList = adverts;
 			}
-			
+
+			vm.bannerData = vm.getSectionData('APP首页轮换广告'); 
+			vm.introData = vm.getSectionData('APP今日推荐商品'); 
+			vm.excellentData = vm.getSectionData('APP精选推荐商品'); 
+			for(var i = 1 ; i <= 6 ; i++) {
+				vm.fData.push({
+					data: vm.getSectionData('APP' + i + 'F商品')
+				});
+			}
+			//精品推荐
+			StoreService.getProductDetail(vm.excellentData[0].ExtField1).then(function(response){
+				vm.e1Data = response.data.Data.ProductInfo;
+			})
+			StoreService.getProductDetail(vm.excellentData[1].ExtField1).then(function(response){
+				vm.e2Data = response.data.Data.ProductInfo;
+			})
+			StoreService.getProductDetail(vm.excellentData[2].ExtField1).then(function(response){
+				vm.e3Data = response.data.Data.ProductInfo;
+			})
+			StoreService.getProductDetail(vm.excellentData[3].ExtField1).then(function(response){
+				vm.e4Data = response.data.Data.ProductInfo;
+			})
 			vm.checkAppVersion();
 			//vm.getAdvertList();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
@@ -38,6 +70,15 @@
 
 		function signOut() {
 			Utils.toLocation('/login', true);
+		}
+
+		function getSectionData(title) {
+			return vm.advertList.filter(function(product){
+				return product.PosTitle === title;
+			}).sort(function(a, b){
+				return a.DisplayOrder - b.DisplayOrder;
+			});
+
 		}
 
 		function checkAppVersion() {
@@ -74,5 +115,11 @@
 		function isLogin() {
 			return vm.account ? true : false;
 		}
+		
+		function goTo(pid) {
+			Utils.setObjectInSessionStorage('current_pid', pid);
+			Utils.toLocation('/tab/product/'+pid, false);
+    }
+		
 	}
 })();

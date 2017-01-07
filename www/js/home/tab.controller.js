@@ -11,6 +11,7 @@
 		vm.accountType = 0;
 		vm.isShow = isShow;
 		vm.isShowTabs = isShowTabs;
+		vm.isLogin = isLogin;
 		init();
 
 		function init() {
@@ -31,6 +32,10 @@
 			})
 			return isRole ? 'ng-show' : 'ng-hide';
 
+		}
+
+		function isLogin() {
+			return vm.accountType !== 0 ? 'ng-show' : 'ng-hide';;
 		}
 
 		function isShowTabs() {

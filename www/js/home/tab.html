@@ -3,7 +3,7 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-striped tabs-light" ng-class="{'tabs-item-hide': tabCtrl.isShowTabs()}">
+<ion-tabs class="tabs-icon-top tabs-striped tabs-light" >
 
   <!-- Dashboard Tab -->
   <ion-tab title="首页" icon-off="iconfont icon-icon-test37" icon-on="iconfont icon-icon-test37" href="#/tab/dash">
@@ -14,7 +14,7 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-categories"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="购物车" icon-off="iconfont icon-icon-test38" icon-on="iconfont icon-icon-test38" href="#/tab/cart">
+  <ion-tab title="购物车" icon-off="iconfont icon-icon-test38" icon-on="iconfont icon-icon-test38" href="#/tab/cart" class="{{tabCtrl.isLogin()}}">
     <ion-nav-view name="tab-cart"></ion-nav-view>
   </ion-tab>
 	
@@ -35,7 +35,7 @@ navigation history that also transitions its views in and out.
 
 
   <!-- Account Tab -->
-  <ion-tab title="我的账户" icon-off="iconfont icon-icon-test36" icon-on="iconfont icon-icon-test36" href="#/tab/account">
+  <ion-tab title="我的账户" icon-off="iconfont icon-icon-test36" icon-on="iconfont icon-icon-test36" href="#/tab/account" class="{{tabCtrl.isLogin()}}">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 
