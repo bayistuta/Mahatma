@@ -1,9 +1,10 @@
 cordova build --release android
 
-F:\Project\mahatma\platforms\android\build\outputs\apk
+cd F:\Project\mahatma\platforms\android\build\outputs\apk
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mahatma.keystore android-release-unsigned.apk mahatma
 
+rm mahatam.apk
 zipalign -v 4 android-release-unsigned.apk mahatam.apk
 
 weixin://wap/pay?appid%3Dwx2421b1c4370ec43b%26noncestr%3D5fW7q2o18hPemaZr%26package%3DWAP%26prepayid%3Dwx20161122022850cae0e861bb0853556386%26timestamp%3D1479752930%26sign%3DA321EA76F17811D61519E55C91B56EFB

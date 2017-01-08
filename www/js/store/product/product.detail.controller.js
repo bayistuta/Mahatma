@@ -54,7 +54,7 @@
         }
 
         function isLogin() {
-			return vm.accountType !== 0 ? 'ng-show' : 'ng-hide';;
+			return vm.accountType !== 0;
 		}
 
         function searchProduct() {

@@ -71,8 +71,8 @@
 			</div>
 		</div>
   </ion-content>
-	<ion-footer-bar class="{{productDetailCtrl.isLogin()}}">
-		<div class="row">
+	<ion-footer-bar ng-if="productDetailCtrl.isLogin()">
+		<div class="row" >
 			<div class="col" style="text-align:center" ng-click="productDetailCtrl.bookMark()">
 				收藏
 			</div>
