@@ -44,7 +44,13 @@
         }
 
         function buyNow() {
-
+            StoreService.addToCart({
+                Pid: vm.product.Pid,
+                BuyCount: 1
+            }).then(function(){
+                Utils.toLocation('/tab/confirmOrder/0_'+ vm.product.Pid, true);
+            });
+            
         }
 
         function bookMark() {

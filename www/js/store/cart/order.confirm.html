@@ -1,47 +1,117 @@
-<ion-view view-title="确认订单" class="cart">
+<ion-view view-title="确认订单" class="confirm-order">
   <ion-content>
-		<div class="list">
-        <div class="item item-thumbnail-left" ng-repeat="product in cartCtrl.cart.StoreCartList[0].CartProductList track by $index">
-					<span class="option">
-						<i class="iconfont" 
-						ng-class="{true:'icon-icon-test16', false:'icon-icon-test15'}[product.OrderProductInfo.isSelected==true]"
-						ng-click="cartCtrl.selectOne(product)"
-						></i>
-					</span>
-					<img ng-src="{{product.OrderProductInfo.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
-          <h2>{{product.OrderProductInfo.Name}}</h2>
-					<p class="clearfix">
-						<span class="pull-left price">
-							¥{{product.OrderProductInfo.DiscountPrice}}
-						</span>
-						<span class="pull-right">
-							<em>x{{product.OrderProductInfo.BuyCount}}</em>
-						</span>
-							</p>
-				</div>
-      </div>
-	</ion-content>
+	  <div class="panel">
+		  <p>
+			<strong style="color:#333">
+				收货人：{{orderConfrimCtrl.defaultShipAddress.Consignee}}&nbsp;&nbsp;{{orderConfrimCtrl.defaultShipAddress.Mobile}}
+			</strong>
+		  </p>
+		  <p style="max-width: 80%;font-size:12px;">
+		  	{{orderConfrimCtrl.defaultShipAddress.ProvinceName+orderConfrimCtrl.defaultShipAddress.CityName+orderConfrimCtrl.defaultShipAddress.CountyName+orderConfrimCtrl.defaultShipAddress.TownName+orderConfrimCtrl.defaultShipAddress.Address}}
+		  </p>
+		  <button class="button button-light button-clear"  ng-click="orderConfrimCtrl.addressModal.show()" 
+		  	style="color:#999;position: absolute; right:10px; top: 10px;">
+			<i class="icon ion-chevron-right"></i>
+		  </button>
+	  </div>
+
+	  <div class="panel list data-list" ng-repeat="product in orderConfrimCtrl.storeOrderList[0].StoreCartInfo.SelectedOrderProductList track by $index">
+		<div class="item item-thumbnail-left" >
+			<img ng-src="{{product.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
+			<h2>{{product.Name}}</h2>
+			<p class="clearfix">
+				<span class="pull-left price">
+					¥{{product.DiscountPrice | number:2}}
+				</span>
+				<span class="pull-right">
+					<em>x{{product.BuyCount}}</em>
+				</span>
+			</p>
+		</div>
+		<div class="clearfix" style="padding: 10px 0; border-top: solid 1px #f0f0f0;margin-top:10px;">
+			<span class="pull-left">价格合计</span>
+			<span class="pull-right price" style="text-align:right">¥{{product.DiscountPrice*product.BuyCount | number:2}}</span>
+		</div>
+	  </div>
+
+	  <div class="panel">
+		  <p>
+			支付方式 : {{orderConfrimCtrl.defaultPayPluginInfo.FriendlyName}}
+		  </p>
+
+		  <button class="button button-light button-clear" ng-click="orderConfrimCtrl.choosePayPlugin()" 
+		  	style="color:#999;position: absolute; right:10px; top: 0px;">
+			<i class="icon ion-chevron-right"></i>
+		  </button>
+	  </div>
+	<script id="plugin-modal.html" type="text/ng-template">
+		<ion-modal-view class="plugin-modal">
+			<ion-header-bar>
+			<h1 class="title">选择支付方式</h1>
+			<button class="button button-small button-stable button-clear pull-right" ng-click="orderConfrimCtrl.pluginModal.hide()">
+				<i class="icon ion-close-round"></i>
+			</button>
+			</ion-header-bar>
+			<ion-content>
+			<ul class="list">
+				<li class="item item-button-right" ng-repeat="plugin in orderConfrimCtrl.payPluginList" ng-click="orderConfrimCtrl.changePlugin(plugin)">
+					{{plugin.FriendlyName}}
+					<button class="button button-clear" ng-class="{true:'button-positive', false: 'button-stable'}[plugin.SystemName==orderConfrimCtrl.defaultPayPluginInfo.SystemName]">
+					<i class="icon" ng-class="{true:'ion-checkmark-circled', false: 'ion-chevron-right'}[plugin.SystemName==orderConfrimCtrl.defaultPayPluginInfo.SystemName]"></i>
+					</button>
+				</li>
+      		</ul>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+	<script id="address-modal.html" type="text/ng-template">
+		<ion-modal-view class="address-modal">
+			<ion-header-bar>
+			<h1 class="title">选择送货地址</h1>
+			<button class="button button-stable button-clear pull-right"  ng-click="orderConfrimCtrl.addressModal.hide()">
+				<i class="icon ion-close-round"></i>
+			</button>
+			</ion-header-bar>
+			<ion-content>
+			<ul class="list">
+				<li class="item item-button-right" ng-repeat="address in orderConfrimCtrl.addresses" ng-click="orderConfrimCtrl.defaultShipAddress=address;orderConfrimCtrl.addressModal.hide()">
+					<p>
+						<strong style="color:#333">
+							收货人：{{address.Consignee}}&nbsp;&nbsp;{{address.Mobile}}
+						</strong>
+					</p>
+					<p style="font-size:12px;">
+						{{address.ProvinceName+address.CityName+address.CountyName+address.TownName+address.Address}}
+					</p>
+					<button class="button button-clear"
+					ng-class="{true:'button-positive', false: 'button-stable'}[address.SaId==orderConfrimCtrl.defaultShipAddress.SaId]"
+					>
+					<i class="icon" ng-class="{true:'ion-checkmark-circled', false: 'ion-chevron-right'}[address.SaId==orderConfrimCtrl.defaultShipAddress.SaId]"></i>
+					</button>
+				</li>
+      		</ul>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+  </ion-content>
 	<ion-footer-bar>
 		<div class="row">
 			<div class="col"  ng-click="cartCtrl.selectAll()">
-				<span class="option">
-						<i class="iconfont" 
-						ng-class="{true:'icon-icon-test16', false:'icon-icon-test15'}[cartCtrl.selectedAll]"
-						></i>
-					</span>
-					<span style="margin-left: 40px;">全选</span>
+				<span style="color: #999;">
+					共{{orderConfrimCtrl.count }}件
+				</span>
 			</div>
 			<div class="col" style="text-align:right" >
 				<span style="color: #999;">
 					合计：
 				</span>
 				<span class="price">
-					¥{{cartCtrl.amount | number:2}}
+					¥{{orderConfrimCtrl.amount | number:2}}
 				</span>
 			</div>
 			<div class="col" style="text-align:right">
-				<button class="button button-positive" style="margin:3px;" ng-click="cartCtrl.confirmOrder()">
-					&nbsp;&nbsp;&nbsp;&nbsp;结算&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="button button-positive" style="margin:3px;" ng-click="orderConfrimCtrl.submitOnlineOrder()">
+					&nbsp;&nbsp;提交订单&nbsp;&nbsp;
 				</button>
 			</div>
 		</div>

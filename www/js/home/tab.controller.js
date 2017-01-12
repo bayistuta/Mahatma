@@ -4,14 +4,15 @@
 	angular.module('mahatma')
 		.controller('TabCtrl', TabCtrl);
 
-	TabCtrl.$inject = ['Utils', 'AccountService', 'Constants'];
+	TabCtrl.$inject = ['Utils', 'AccountService', 'Constants', '$state'];
 
-	function TabCtrl(Utils, AccountService, Constants) {
+	function TabCtrl(Utils, AccountService, Constants, $state) {
 		var vm = this;
 		vm.accountType = 0;
 		vm.isShow = isShow;
 		vm.isShowTabs = isShowTabs;
 		vm.isLogin = isLogin;
+		vm.goToState = goToState;
 		init();
 
 		function init() {
@@ -40,6 +41,14 @@
 
 		function isShowTabs() {
 			return vm.accountType > 0 ? '' : 'hide-tabs';
+		}
+
+		function goToState(state) {
+			$state.go(state, {}, {
+				reload: true,
+				inherit: false,
+				notify: true
+			});
 		}
 	}
 })();

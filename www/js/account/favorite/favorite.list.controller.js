@@ -5,9 +5,9 @@
 		.controller('FavoriteCtrl', FavoriteCtrl);
 
 	FavoriteCtrl.$inject = ['AccountService', '$scope', '$rootScope', '$state',
-	'ionicToast'];
+	'ionicToast', 'Utils'];
 
-	function FavoriteCtrl(AccountService, $scope, $rootScope, $state, ionicToast) {
+	function FavoriteCtrl(AccountService, $scope, $rootScope, $state, ionicToast, Utils) {
 		var vm = this;
 		vm.products = [];	
 		vm.stores = [];	
@@ -21,6 +21,7 @@
 		vm.loadMoreData = loadMoreData;
 		vm.changeType = changeType;
 		vm.removeRecord = removeRecord;
+		vm.goTo = goTo;
 		vm.init();
 
 		function init() {
@@ -94,5 +95,10 @@
 				});
 			}
 		}
+
+		function goTo(pid) {
+			Utils.setObjectInSessionStorage('current_pid', pid);
+			Utils.toLocation('/tab/product/'+pid, false);
+    	}
 	}
 })();

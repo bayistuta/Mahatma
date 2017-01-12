@@ -10,11 +10,11 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-dash"></ion-nav-view>
   </ion-tab>
 
-   <ion-tab title="分类" icon-off="iconfont icon-icon-test31" icon-on="iconfont icon-icon-test31" href="#/tab/categories">
+   <ion-tab title="分类" icon-off="iconfont icon-icon-test31" icon-on="iconfont icon-icon-test31" ng-click="tabCtrl.goToState('tab.categories')">
     <ion-nav-view name="tab-categories"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="购物车" icon-off="iconfont icon-icon-test38" icon-on="iconfont icon-icon-test38" href="#/tab/cart" class="{{tabCtrl.isLogin()}}">
+  <ion-tab title="购物车" icon-off="iconfont icon-icon-test38" icon-on="iconfont icon-icon-test38" ng-click="tabCtrl.goToState('tab.cart')"  class="{{tabCtrl.isLogin()}}">
     <ion-nav-view name="tab-cart"></ion-nav-view>
   </ion-tab>
 	
@@ -35,7 +35,7 @@ navigation history that also transitions its views in and out.
 
 
   <!-- Account Tab -->
-  <ion-tab title="我的账户" icon-off="iconfont icon-icon-test36" icon-on="iconfont icon-icon-test36" href="#/tab/account" class="{{tabCtrl.isLogin()}}">
+  <ion-tab title="我的账户" icon-off="iconfont icon-icon-test36" icon-on="iconfont icon-icon-test36" ng-click="tabCtrl.goToState('tab.account')" class="{{tabCtrl.isLogin()}}">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

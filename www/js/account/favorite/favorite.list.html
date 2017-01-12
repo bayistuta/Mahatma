@@ -15,7 +15,7 @@
 		</div>
     <div ng-if="favoriteCtrl.showType===0">
       <div class="list" ng-if="favoriteCtrl.products.length > 0">
-        <a class="item item-thumbnail-left" ng-repeat="product in favoriteCtrl.products">
+        <a class="item item-thumbnail-left" ng-repeat="product in favoriteCtrl.products" ng-click="favoriteCtrl.goTo(product.Pid)">
           <img ng-src="{{product.ShowImg}}" onerror="this.src='img/logo.png';this.style.background='#0086b3'" />
           <h2>{{product.ProductName}}</h2>
           <i class="ion-close-round" ng-click="favoriteCtrl.removeRecord(product.Pid);$event.stopPropagation();"></i>

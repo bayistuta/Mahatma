@@ -1,4 +1,4 @@
-<ion-view view-title="{{offlineOrderCtrl.pageTitle}}" class="order-list">
+<ion-view view-title="{{offlineOrderCtrl.pageTitle}}" class="order-list" cache-view="false">
    <ion-nav-buttons side="right">
       <a class="a-bd" href="#/tab/orders/create" ng-if="offlineOrderCtrl.canCreateOrder()">
         <span class="txt">报单</span>
@@ -30,21 +30,23 @@
         <div class="order-goods">
            <div class="row">
              <div class="col">
-                  <span >商品：{{order.ProductName}}</span></div>
-              <div class="col">
-                  <span >下单时间：{{order.AddTime | date:'yyyy-MM-dd HH:mm:ss'}}</span></div>
+                  <span>商品：{{order.ProductName}}</span></div>
             </div>
             <div class="row">
               <div class="col">
-                  <span >下单数量：{{order.ProductCount}}</span></div>
+                  <span>下单时间：{{order.AddTime | date:'yyyy-MM-dd HH:mm:ss'}}</span></div>
+            </div>
+            <div class="row">
               <div class="col">
-                  <span >购物金额：{{order.OrderAmount.toFixed(2)}}</span></div>
+                  <span>下单数量：{{order.ProductCount}}</span></div>
+              <div class="col">
+                  <span>购物金额：{{order.OrderAmount.toFixed(2)}}</span></div>
             </div>
             <div class="row">
                 <div class="col">
-                    <span >现金支付：{{order.CashMoney.toFixed(2)}}</span></div>
+                    <span>现金支付：{{order.CashMoney.toFixed(2)}}</span></div>
                 <div class="col">
-                    <span >红包支付：{{order.CreditMoney.toFixed(2)}}</span></div>
+                    <span>红包支付：{{order.CreditMoney.toFixed(2)}}</span></div>
             </div>
         </div>
         <div class="order-footer" ng-if="offlineOrderCtrl.canApproveOrder()">

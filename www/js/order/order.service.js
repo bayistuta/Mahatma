@@ -190,6 +190,22 @@
 			return deferred.promise;
 		}
 
+		var submitOnlineOrder = function(options) {
+			var deferred = $q.defer();
+			var url = applicationConfig.api_url + '/' + 'Order/SubmitOrder';
+			$http.post(url,options
+			).then(function (response) {
+				if (response.data.Result) {
+					deferred.resolve(response);
+				} else {
+					deferred.reject(response);
+				}
+			}, function (err) {
+				deferred.reject(err.data);
+			});
+			return deferred.promise;
+		}
+
 		var init = function () {
 
 		};
@@ -207,6 +223,7 @@
 			cancelOrder: cancelOrder,
 			confirmReceipt: confirmReceipt,
 			confirmOnlineOrder: confirmOnlineOrder,
+			submitOnlineOrder: submitOnlineOrder,
 		};
 	}
 

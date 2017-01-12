@@ -10,7 +10,7 @@
       <ul class="wrap">
         <li class="row">
           <span class="txt-t">收货人：&nbsp;&nbsp;&nbsp;</span>
-          <div class="txt-input">
+          <div class="txt-input" style="padding-left: 2px;">
             <input type="text" class="txt" placeholder="收货人姓名"  ng-model="shipAddressCreateCtrl.userName"
               required name="userName"  /></div>
         </li>
@@ -19,7 +19,7 @@
         </li>
 				<li class="row">
           <span class="txt-t">别名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <div class="txt-input">
+          <div class="txt-input" style="padding-left: 3px;">
             <input type="text" class="txt" placeholder="收货人别名"  ng-model="shipAddressCreateCtrl.alias"
               required name="alias"  /></div>
         </li>
@@ -39,28 +39,28 @@
 				<li class="row row-t">
           <span class="txt-t">所在区域：</span>
           <div class="txt-sel">
-          	<select class="sel" style="width:60px" 
+          	<select class="sel" style="width:250px;display:block;margin-bottom:5px;"  
 							ng-model="shipAddressCreateCtrl.selectedProvinceId"
 							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.provinces"
 							ng-change="shipAddressCreateCtrl.changeProvince()"
 							>
 							<option value="">省</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px;display:block;margin-bottom:5px;" 
 							ng-model="shipAddressCreateCtrl.selectedCityId"
 							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.cities"
 							ng-change="shipAddressCreateCtrl.changeCity()"
 						>
 							<option value="">市</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px;display:block;margin-bottom:5px;" 
 							ng-model="shipAddressCreateCtrl.selectedCountryId"
 							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.countries"
 							ng-change="shipAddressCreateCtrl.changeCountry()"
 						>
 							<option value="">县</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px;display:block;margin-bottom:5px;" 
 							ng-model="shipAddressCreateCtrl.selectedTownId"
 							ng-options="region.RegionId as region.Name for region in shipAddressCreateCtrl.towns"
 						>

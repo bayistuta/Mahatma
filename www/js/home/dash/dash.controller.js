@@ -51,18 +51,20 @@
 				});
 			}
 			//精品推荐
-			StoreService.getProductDetail(vm.excellentData[0].ExtField1).then(function(response){
-				vm.e1Data = response.data.Data.ProductInfo;
-			})
-			StoreService.getProductDetail(vm.excellentData[1].ExtField1).then(function(response){
-				vm.e2Data = response.data.Data.ProductInfo;
-			})
-			StoreService.getProductDetail(vm.excellentData[2].ExtField1).then(function(response){
-				vm.e3Data = response.data.Data.ProductInfo;
-			})
-			StoreService.getProductDetail(vm.excellentData[3].ExtField1).then(function(response){
-				vm.e4Data = response.data.Data.ProductInfo;
-			})
+			if (vm.excellentData && vm.excellentData.length > 0) {
+				StoreService.getProductDetail(vm.excellentData[0].ExtField1).then(function(response){
+					vm.e1Data = response.data.Data.ProductInfo;
+				})
+				StoreService.getProductDetail(vm.excellentData[1].ExtField1).then(function(response){
+					vm.e2Data = response.data.Data.ProductInfo;
+				})
+				StoreService.getProductDetail(vm.excellentData[2].ExtField1).then(function(response){
+					vm.e3Data = response.data.Data.ProductInfo;
+				})
+				StoreService.getProductDetail(vm.excellentData[3].ExtField1).then(function(response){
+					vm.e4Data = response.data.Data.ProductInfo;
+				})
+			}
 			vm.checkAppVersion();
 			//vm.getAdvertList();
 			vm.account  = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
@@ -119,7 +121,7 @@
 		function goTo(pid) {
 			Utils.setObjectInSessionStorage('current_pid', pid);
 			Utils.toLocation('/tab/product/'+pid, false);
-    }
+    	}
 		
 	}
 })();

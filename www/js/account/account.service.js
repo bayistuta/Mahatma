@@ -9,9 +9,9 @@
 		.module('mahatma')
 		.factory('AccountService', AccountService);
 
-	AccountService.$inject = ['$q', '$http', 'Utils', 'Constants', '$rootScope'];
+	AccountService.$inject = ['$q', '$http', 'Utils', 'Constants', '$rootScope', 'ionicToast'];
 
-	function AccountService($q, $http, Utils, Constants, $rootScope) {
+	function AccountService($q, $http, Utils, Constants, $rootScope, ionicToast) {
 
 		function signIn(username, password) {
 			var deferred = $q.defer();
@@ -48,6 +48,42 @@
 			}, function (err) {
 				ionicToast.show(err.data.error_description, 'top', false, 4000);
 				deferred.reject(err.data);
+			});
+			return deferred.promise;
+		}
+
+		function signInFromRemember(username, password) {
+			var deferred = $q.defer();
+
+			$http({
+				method: 'POST',
+				url: applicationConfig.token_url,
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				transformRequest: function (obj) {
+					var str = [];
+					for (var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data: { username: username, password: password, grant_type: 'password' }
+			}).then(function (response) {
+				var user = response.data;
+				if (user) {
+					sessionStorage.setItem(Constants.CACHE_TOKEN_KEY, user.access_token);
+					//get user data
+					$rootScope.showLoadingBar = false;
+					getUserById(user.userId).then(function (responseInner) {
+						if (responseInner.data.Result) {
+							Utils.setObjectInSessionStorage(Constants.CACHE_ACCOUNT_KEY, responseInner.data.Data);
+							deferred.resolve(responseInner);
+						}
+					});
+				} else {
+					deferred.resolve(null);
+				}
+				//get account detail
+			}, function (err) {
+				deferred.resolve(null);
 			});
 			return deferred.promise;
 		}
@@ -443,6 +479,7 @@
 
 		return {
 			signIn: signIn,
+			signInFromRemember: signInFromRemember,
 			getUserById: getUserById,
 			getUserByName: getUserByName,
 			changePassword: changePassword,

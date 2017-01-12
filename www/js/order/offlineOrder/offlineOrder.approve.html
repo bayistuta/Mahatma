@@ -19,7 +19,7 @@
       <span>买家账号：{{orderApproveCtrl.orderDetail.BuyerUserName}}</span>
       <span>商品名称：{{orderApproveCtrl.orderDetail.StoreName}}</span>
       <span>商品数量：{{orderApproveCtrl.orderDetail.ProductCount}}</span>
-      <span>支付方式：{{orderApproveCtrl.orderDetail.PayMode}}</span>
+      <span>支付方式：{{orderApproveCtrl.getPayMode(orderApproveCtrl.orderDetail.PayMode)}}</span>
       <span>现金支付：{{orderApproveCtrl.orderDetail.CashMoney.toFixed(2)}}</span>
       <span>红包支付：{{orderApproveCtrl.orderDetail.CreditMoney.toFixed(2)}}</span>
       <span>平台服务费：{{orderApproveCtrl.orderDetail.CommissionMoney.toFixed(2)}}</span>

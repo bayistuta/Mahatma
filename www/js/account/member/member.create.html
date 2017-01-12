@@ -55,7 +55,7 @@
 				<li class="row">
           <span class="txt-t">手机号码：</span>
           <div class="txt-input">
-            <input type="text" class="txt" placeholder="手机号码"  ng-model="memberCreateCtrl.mobile"
+            <input type="text" class="txt" placeholder="手机号码"  ng-model="memberCreateCtrl.mobile" ng-change="memberCreateCtrl.disableVerifyButton = false"
                name="mobile" required />
                
           </div>
@@ -79,28 +79,28 @@
 				<li class="row row-t">
           <span class="txt-t">所在区域：</span>
           <div class="txt-sel">
-          	<select class="sel" style="width:60px" 
+          	<select class="sel" style="width:250px;display:block;margin-bottom:5px;" 
 							ng-model="memberCreateCtrl.selectedProvinceId"
 							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.provinces"
 							ng-change="memberCreateCtrl.changeProvince()"
 							>
 							<option value="">省</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px;display:block;margin-bottom:5px;" 
 							ng-model="memberCreateCtrl.selectedCityId"
 							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.cities"
 							ng-change="memberCreateCtrl.changeCity()"
 						>
 							<option value="">市</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px;display:block;margin-bottom:5px;"
 							ng-model="memberCreateCtrl.selectedCountryId"
 							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.countries"
 							ng-change="memberCreateCtrl.changeCountry()"
 						>
 							<option value="">县</option>
             </select>
-						<select class="sel" style="width:60px"
+						<select class="sel" style="width:250px" 
 							ng-model="memberCreateCtrl.selectedTownId"
 							ng-options="region.RegionId as region.Name for region in memberCreateCtrl.towns"
 						>

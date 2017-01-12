@@ -13,15 +13,16 @@
 						requireLogin: false,
 					},
 					resolve: {
-						user: function(Utils, Constants, AccountService) {
+						user: function(Utils, Constants, AccountService, ionicToast) {
 							//var jwtToken = Utils.getObjectFromSessionStorage(Constants.CACHE_TOKEN_KEY, null);
 							var account = Utils.getObjectFromSessionStorage(Constants.CACHE_ACCOUNT_KEY, null);
 							var username = localStorage.getItem('userName') || '';
 							var password = localStorage.getItem('password') || '';
 							if (account === null && username.length > 0) {
 								//save login
-								AccountService.signIn(username, password);
+								return AccountService.signInFromRemember(username, password);
 							}
+							return account;
 						}
 					}
 				})
